@@ -3,7 +3,8 @@ const API_BASE = 'api/';
 const SIZES    = ['xs', 's', 'm'];
 
 // Single Source of Truth für Auth-Zustand
-let _auth = null; // null = nicht angemeldet | { id, username, role }
+let _auth   = null;   // null = nicht angemeldet | { id, username, role }
+let _genres = null;   // Cache: Genres einmalig laden (Principle 9)
 
 // DOM-Shortcuts
 const el      = id  => document.getElementById(id);
@@ -45,8 +46,12 @@ function initSizePicker() {
 // ── Genres ────────────────────────────────────────────────────────────────────
 async function loadGenres() {
     try {
-        const { success, genres } = await fetch(API_BASE + 'get_genres.php').then(r => r.json());
-        if (!success) return;
+        // Cache: Genres werden nur einmalig vom Server geholt (Principle 9)
+        if (!_genres) {
+            const { success, genres } = await fetch(API_BASE + 'get_genres.php').then(r => r.json());
+            if (!success) return;
+            _genres = genres;
+        }
 
         const container = el('genreFilter');
         const allBtn  = container.querySelector('[data-genre=""]');
@@ -54,7 +59,7 @@ async function loadGenres() {
         allBtn.addEventListener('click',  e => applyFilter({ genre: '' }, e.currentTarget));
         saleBtn.addEventListener('click', () => applyFilter({ sale: true }, saleBtn));
 
-        genres.forEach(genre => {
+        _genres.forEach(genre => {
             const btn = document.createElement('button');
             btn.className     = 'genre-btn';
             btn.dataset.genre = genre.name;

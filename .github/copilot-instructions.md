@@ -1,20 +1,222 @@
-Es soll eine Webseite erstellt werden mit einer Datenbank über Steamgames in der steam-games.json.
-Das Projekt soll wie Nextflix aussehen und die Spiele mit deren Bildern aus der "image-logo-url" beinhalten und wenn man draufklickt soll die "image-icon-url" in einem pop up fenster angezeigt werden mit der Game beschreibung und ein paar metadaten zum Spiel. 
+# Copilot Instructions – Steam Games Web App (Ergänzung)
 
-BSP. für eine API:
+## 1. Core Principle: Simplicity First
 
-Image-logo-url: https://media.steampowered.com/steamcommunity/public/images/apps/240/ee97d0dbf3e5d5d59e69dc20b98ed9dc8cad5283.jpg
+* This project is a **school project** → prioritize simplicity over abstraction
+* Use **plain PHP + Vanilla JS only**
+* Avoid:
 
-image-icon-url: https://media.steampowered.com/steamcommunity/public/images/apps/240/9052fa60c496a1c03383b27687ec50f4bf0f0e10.jpg
+  * Framework patterns (Laravel, MVC overengineering)
+  * Complex class structures
+* Prefer:
 
-game-beschreibung: https://store.steampowered.com/api/appdetails?appids=240&l=de
+  * Clear procedural code
+  * Small, understandable functions
 
-Techstack: MySQL, PHP, HTML, Javascript vanilla, css
+---
 
-Die Webseite soll so einfach wie möglich sein kein komplizierter code nur die nötigsten Funktionen. Es soll eine Startseite geben auf der alle Spiele mit ihren Bildern angezeigt werden. Man kann auf ein bild klicken und ein Pop-up-Fenster öffnet sich, das die "image-icon-url" anzeigt, zusammen mit der Spielbeschreibung und einigen Metadaten zum Spiel. Die Daten für die Spiele sollen aus der "steam-games.json" Datei geladen werden, die in einer MySQL-Datenbank gespeichert ist. Die Webseite soll mit PHP erstellt werden, um die Daten aus der Datenbank abzurufen und an die Frontend-Seite zu senden, die mit HTML, CSS und JavaScript erstellt wird.
+## 2. Project Context Awareness (Critical)
 
-Aufgaben die erledigt werden müssen:
-1. Erstellen einer MySQL-Datenbank (lokal) und einer Tabelle, um die Spieldaten zu speichern. Mindestens eine m zu n Beziehung zwischen Spielen und Genres, da ein Spiel mehrere Genres haben kann und ein Genre mehrere Spiele haben kann.
-2. Datenbankschema erstellen, um die Spieldaten zu organisieren.
-3. Skizze Oberflächendesign erstellen, um die Webseite wie Netflix aussehen zu lassen.
-4.Dokumentation erstellen, um die Funktionen und den Code der Webseite zu erklären.
+* Data source: `steam-games.json` → imported into **MySQL**
+
+* Images:
+
+  * `image-logo-url` → used in grid view
+  * `image-icon-url` → used in modal
+
+* External API:
+
+  * Steam API (`appdetails`) → used for description
+
+* UI behavior:
+
+  * Grid = all games
+  * Click = open modal with:
+
+    * Icon image
+    * Description
+    * Metadata (price, genres, etc.)
+
+---
+
+## 3. Database Handling (Context 7 Focus)
+
+* Always respect the **m:n relationship**:
+
+  ```
+  games ↔ game_genres ↔ genres
+  ```
+
+* Queries must:
+
+  * Use **JOIN instead of multiple queries**
+  * Be optimized for readability
+
+Example guideline:
+
+```php
+// Fetch games with their genres using a JOIN to resolve m:n relation
+```
+
+* Never hardcode data → always load from DB
+
+---
+
+## 4. API Best Practices
+
+* Keep endpoints **minimal and focused**:
+
+  * `get_games.php` → list
+  * `get_game_details.php` → single game
+  * `get_genres.php` → filter data
+
+* Always return clean JSON:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
+```
+
+* Do NOT:
+
+  * Mix HTML into API
+  * Duplicate logic across endpoints
+
+---
+
+## 5. Frontend Logic (Vanilla JS Only)
+
+* Separate responsibilities:
+
+  * Fetching → API calls
+  * Rendering → DOM creation
+  * Interaction → events
+
+* Modal handling must be:
+
+  * Simple
+  * Reusable
+
+Example structure:
+
+```js
+fetchGames()
+renderGames(games)
+openModal(gameId)
+```
+
+---
+
+## 6. UI Rules (Netflix-Style)
+
+* Grid layout must:
+
+  * Focus on images (image-logo-url)
+  * Be responsive
+
+* Modal must clearly show:
+
+  * Icon (image-icon-url)
+  * Description (Steam API)
+  * Metadata
+
+* Always implement:
+
+  * Hover effect
+  * Click feedback
+  * Close modal interaction
+
+---
+
+## 7. Reuse Before Rewrite
+
+* Before writing new code:
+
+  * Check if a function already exists
+  * Reuse rendering logic
+
+* Typical reusable parts:
+
+  * Game card
+  * Modal
+  * API fetch helper
+
+---
+
+## 8. Clean Code Rules
+
+* Use clear naming:
+
+  * `getGames()`, `renderGrid()`, `openModal()`
+* Avoid:
+
+  * Deep nesting
+  * Inline logic in HTML
+* Keep functions short and focused
+
+---
+
+## 9. Performance Basics
+
+* Load only necessary data:
+
+  * No `SELECT *` unless required
+* Avoid repeated API calls:
+
+  * Cache results in JS if possible
+* Use DB indexes (from schema)
+
+---
+
+## 10. Security Basics
+
+* Always:
+
+  * Use prepared statements (PDO)
+  * Validate GET parameters (`id`, `search`)
+* Never:
+
+  * Trust user input directly
+  * Build SQL strings manually
+
+---
+
+## 11. Documentation Requirement
+
+* Since this is a graded project:
+
+  * Every important part must be explained
+
+Must include comments for:
+
+* SQL queries (what + why)
+* m:n relationship usage
+* API endpoints purpose
+
+---
+
+## 12. Expected Output Behavior
+
+* Homepage:
+
+  * Shows all games with cover images
+* Click:
+
+  * Opens modal
+* Modal:
+
+  * Loads details dynamically
+  * Displays Steam description + metadata
+
+---
+
+## Goal
+
+Create a **simple, functional Netflix-style Steam library** that demonstrates:
+
+* Understanding of **databases (m:n relationships)**
+* Clean **PHP API usage**
+* Structured **Vanilla JS frontend**
+* Clear and maintainable code
