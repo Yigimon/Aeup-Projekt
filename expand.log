@@ -1,0 +1,655 @@
+
+🎮 Expand Import
+════════════════════════════════════
+📋 Spiele aktuell in DB: 192
+🎯 Ziel:                 500
+➕ Benötigt:             308
+════════════════════════════════════
+
+✅ DB-Verbindung hergestellt. Lade SteamSpy-Daten...
+
+  Fetching: https://steamspy.com/api.php?request=top100forever
+  → 100 Spiele (Gesamt bisher: 100)
+  Fetching: https://steamspy.com/api.php?request=top100in2weeks
+  → 100 Spiele (Gesamt bisher: 100)
+  Fetching: https://steamspy.com/api.php?request=top100owned
+  → 100 Spiele (Gesamt bisher: 100)
+  Fetching: https://steamspy.com/api.php?request=genre&genre=action
+  → 36889 Spiele (Gesamt bisher: 36911)
+
+📦 SteamSpy: 36911 eindeutige AppIDs gefunden
+🆕 Davon neu (nicht in DB): 36801
+
+[1/308] AppID 10 ... 🎯 Counter-Strike
+[2/308] AppID 70 ... 🎯 Half-Life
+[3/308] AppID 100 ... 🎯 Counter-Strike: Condition Zero
+[4/308] AppID 440 ... 🎯 Team Fortress 2
+[5/308] AppID 4000 ... 🎯 Garry's Mod
+[6/308] AppID 49520 ... 🎯 Borderlands 2
+[7/308] AppID 107410 ... 🎯 Arma 3
+[8/308] AppID 108600 ... 🎯 Project Zomboid
+[9/308] AppID 218620 ... 🎯 PAYDAY 2
+[10/308] AppID 219990 ... 🎯 Grim Dawn
+[11/308] AppID 221100 ... 🎯 DayZ
+[12/308] AppID 227300 ... 🎯 Euro Truck Simulator 2
+[13/308] AppID 227940 ... ⚠️  kein Store-Eintrag
+[13/308] AppID 230410 ... 🎯 Warframe
+[14/308] AppID 236390 ... 🎯 War Thunder
+[15/308] AppID 251570 ... 🎯 7 Days to Die
+[16/308] AppID 252490 ... 🎯 Rust
+[17/308] AppID 252950 ... 🎯 Rocket League®
+[18/308] AppID 261550 ... 🎯 Mount & Blade II: Bannerlord
+[19/308] AppID 291480 ... 🎯 Warface: Clutch
+[20/308] AppID 291550 ... 🎯 Brawlhalla
+[21/308] AppID 304050 ... 🎯 Trove
+[22/308] AppID 304930 ... 🎯 Unturned
+[23/308] AppID 346110 ... 🎯 ARK: Survival Evolved
+[24/308] AppID 359550 ... 🎯 Tom Clancy's Rainbow Six® Siege X
+[25/308] AppID 381210 ... 🎯 Dead by Daylight
+[26/308] AppID 386360 ... 🎯 SMITE®
+[27/308] AppID 413150 ... 🎯 Stardew Valley
+[28/308] AppID 417910 ... 🎯 Street Warriors Online
+[29/308] AppID 431960 ... 🎯 Wallpaper Engine
+[30/308] AppID 433850 ... 🎯 Z1 Battle Royale
+[31/308] AppID 438100 ... 🎯 VRChat
+[32/308] AppID 444090 ... 🎯 Paladins®
+[33/308] AppID 444200 ... 🎯 World of Tanks Blitz
+[34/308] AppID 477160 ... 🎯 Human Fall Flat
+[35/308] AppID 526870 ... 🎯 Satisfactory
+[36/308] AppID 532210 ... 🎯 Life is Strange 2
+[37/308] AppID 550650 ... 🎯 Black Squad
+[38/308] AppID 552990 ... 🎯 World of Warships
+[39/308] AppID 553850 ... 🎯 HELLDIVERS™ 2
+[40/308] AppID 578080 ... 🎯 PUBG: BATTLEGROUNDS
+[41/308] AppID 582010 ... 🎯 Monster Hunter: World
+[42/308] AppID 594650 ... 🎯 Hunt: Showdown 1896
+[43/308] AppID 632360 ... 🎯 Risk of Rain 2
+[44/308] AppID 648800 ... 🎯 Raft
+[45/308] AppID 739630 ... 🎯 Phasmophobia
+[46/308] AppID 755790 ... ⚠️  kein Store-Eintrag
+[46/308] AppID 814380 ... 🎯 Sekiro™: Shadows Die Twice - GOTY Edition
+[47/308] AppID 892970 ... 🎯 Valheim
+[48/308] AppID 899770 ... 🎯 Last Epoch
+[49/308] AppID 901583 ... 🎯 Grand Theft Auto IV: Complete Edition
+[50/308] AppID 945360 ... 🎯 Among Us
+[51/308] AppID 990080 ... 🎯 Hogwarts Legacy
+[52/308] AppID 1063730 ... 🎯 New World: Aeternum
+[53/308] AppID 1085660 ... 🎯 Destiny 2
+[54/308] AppID 1086940 ... 🎯 Baldur's Gate 3
+[55/308] AppID 1089350 ... 🎯 NBA 2K20
+[56/308] AppID 1091500 ... 🎯 Cyberpunk 2077
+[57/308] AppID 1097150 ... 🎯 Fall Guys
+[58/308] AppID 1116170 ... 🎯 CyberCorp
+[59/308] AppID 1172470 ... 🎯 Apex Legends™
+[60/308] AppID 1174180 ... 🎯 Red Dead Redemption 2
+[61/308] AppID 1203220 ... 🎯 NARAKA: BLADEPOINT
+[62/308] AppID 1222670 ... 🎯 The Sims™ 4
+[63/308] AppID 1238810 ... 🎯 Battlefield™ V
+[64/308] AppID 1240440 ... 🎯 Halo Infinite
+[65/308] AppID 1245620 ... 🎯 ELDEN RING
+[66/308] AppID 1326470 ... 🎯 Sons Of The Forest
+[67/308] AppID 1491000 ... 🎯 War Robots: Frontiers
+[68/308] AppID 1517290 ... 🎯 Battlefield™ 2042
+[69/308] AppID 1599340 ... 🎯 Lost Ark
+[70/308] AppID 1623730 ... 🎯 Palworld
+[71/308] AppID 1665460 ... 🎯 eFootball™
+[72/308] AppID 1811260 ... 🎯 EA SPORTS™ FIFA 23
+[73/308] AppID 1938090 ... 🎯 Call of Duty®
+[74/308] AppID 1966720 ... 🎯 Lethal Company
+[75/308] AppID 2186680 ... 🎯 Warhammer 40,000: Rogue Trader
+[76/308] AppID 2246340 ... 🎯 Monster Hunter Wilds
+[77/308] AppID 2358720 ... 🎯 Black Myth: Wukong
+[78/308] AppID 2694490 ... 🎯 Path of Exile 2
+[79/308] AppID 3164500 ... 🎯 Schedule I
+[80/308] AppID 3241660 ... 🎯 R.E.P.O.
+[81/308] AppID 20 ... 🎯 Team Fortress Classic
+[82/308] AppID 30 ... 🎯 Day of Defeat
+[83/308] AppID 40 ... 🎯 Deathmatch Classic
+[84/308] AppID 50 ... 🎯 Half-Life: Opposing Force
+[85/308] AppID 60 ... 🎯 Ricochet
+[86/308] AppID 80 ... 🎯 Counter-Strike: Condition Zero
+[87/308] AppID 130 ... 🎯 Half-Life: Blue Shift
+[88/308] AppID 300 ... 🎯 Day of Defeat: Source
+[89/308] AppID 500 ... 🎯 Left 4 Dead
+[90/308] AppID 630 ... 🎯 Alien Swarm
+[91/308] AppID 1200 ... 🎯 Red Orchestra: Ostfront 41-45
+[92/308] AppID 1300 ... ⚠️  kein Store-Eintrag
+[92/308] AppID 1309 ... ⚠️  kein Store-Eintrag
+[92/308] AppID 1313 ... ⚠️  kein Store-Eintrag
+[92/308] AppID 2100 ... 🎯 Dark Messiah of Might & Magic
+[93/308] AppID 2130 ... 🎯 Dark Messiah of Might & Magic
+[94/308] AppID 2200 ... ⚠️  kein Store-Eintrag
+[94/308] AppID 2210 ... ⚠️  kein Store-Eintrag
+[94/308] AppID 2270 ... 🎯 Wolfenstein 3D
+[95/308] AppID 2280 ... 🎯 DOOM + DOOM II
+[96/308] AppID 2290 ... ⚠️  kein Store-Eintrag
+[96/308] AppID 2300 ... 🎯 DOOM II
+[97/308] AppID 2310 ... 🎯 Quake
+[98/308] AppID 2320 ... 🎯 Quake II
+[99/308] AppID 2330 ... ⚠️  kein Store-Eintrag
+[99/308] AppID 2340 ... ⚠️  kein Store-Eintrag
+[99/308] AppID 2360 ... 🎯 Hexen: Beyond Heretic
+[100/308] AppID 2370 ... 🎯 Hexen: Deathkings of the Dark Citadel
+[101/308] AppID 2390 ... 🎯 Heretic: Shadow of the Serpent Riders
+[102/308] AppID 2400 ... 🎯 The Ship: Murder Party
+[103/308] AppID 2420 ... 🎯 The Ship: Single Player
+[104/308] AppID 2450 ... 🎯 Bloody Good Time
+[105/308] AppID 2500 ... 🎯 Shadowgrounds
+[106/308] AppID 2590 ... 🎯 Alpha Prime
+[107/308] AppID 2600 ... ⚠️  kein Store-Eintrag
+[107/308] AppID 2610 ... ⚠️  kein Store-Eintrag
+[107/308] AppID 2620 ... 🎯 Call of Duty® (2003)
+[108/308] AppID 2630 ... 🎯 Call of Duty® 2
+[109/308] AppID 2640 ... ⚠️  kein Store-Eintrag
+[109/308] AppID 2710 ... 🎯 Act of War: Direct Action
+[110/308] AppID 2720 ... 🎯 ThreadSpace: Hyperbol
+[111/308] AppID 2780 ... 🎯 ARMA: Combat Operations
+[112/308] AppID 2820 ... 🎯 X3: Terran Conflict
+[113/308] AppID 2870 ... 🎯 X Rebirth
+[114/308] AppID 3020 ... 🎯 Call of Juarez
+[115/308] AppID 3270 ... ⚠️  kein Store-Eintrag
+[115/308] AppID 3620 ... 🎯 Zuma's Revenge!
+[116/308] AppID 3700 ... 🎯 Sniper Elite
+[117/308] AppID 3710 ... 🎯 Judge Dredd: Dredd vs. Death
+[118/308] AppID 3730 ... ⚠️  kein Store-Eintrag
+[118/308] AppID 3800 ... 🎯 Advent Rising
+[119/308] AppID 3810 ... ⚠️  kein Store-Eintrag
+[119/308] AppID 3820 ... ⚠️  kein Store-Eintrag
+[119/308] AppID 4300 ... ⚠️  kein Store-Eintrag
+[119/308] AppID 4500 ... 🎯 S.T.A.L.K.E.R.: Shadow of Chernobyl
+[120/308] AppID 4520 ... 🎯 Full Spectrum Warrior
+[121/308] AppID 4530 ... 🎯 Full Spectrum Warrior: Ten Hammers
+[122/308] AppID 4720 ... ⚠️  kein Store-Eintrag
+[122/308] AppID 4920 ... 🎯 Natural Selection 2
+[123/308] AppID 6000 ... 🎯 STAR WARS™ Republic Commando™
+[124/308] AppID 6020 ... 🎯 STAR WARS™ Jedi Knight - Jedi Academy™
+[125/308] AppID 6030 ... 🎯 STAR WARS™ Jedi Knight II - Jedi Outcast™
+[126/308] AppID 6060 ... 🎯 STAR WARS™ Battlefront II (Classic, 2005)
+[127/308] AppID 6080 ... 🎯 Thrillville®: Off the Rails™
+[128/308] AppID 6090 ... 🎯 Armed and Dangerous®
+[129/308] AppID 6220 ... 🎯 FlatOut
+[130/308] AppID 6250 ... 🎯 Making History: The Calm & the Storm
+[131/308] AppID 6310 ... 🎯 The Longest Journey
+[132/308] AppID 6370 ... 🎯 Bloodline Champions
+[133/308] AppID 6400 ... 🎯 Joint Task Force
+[134/308] AppID 6510 ... 🎯 Lost Planet™: Extreme Condition
+[135/308] AppID 6550 ... ⚠️  kein Store-Eintrag
+[135/308] AppID 6850 ... 🎯 Hitman 2: Silent Assassin
+[136/308] AppID 6860 ... 🎯 Hitman: Blood Money
+[137/308] AppID 6870 ... 🎯 Battlestations: Midway
+[138/308] AppID 6880 ... 🎯 Just Cause
+[139/308] AppID 6900 ... 🎯 Hitman: Codename 47
+[140/308] AppID 6910 ... 🎯 Deus Ex: Game of the Year Edition
+[141/308] AppID 6920 ... 🎯 Deus Ex: Invisible War
+[142/308] AppID 6980 ... 🎯 Thief: Deadly Shadows
+[143/308] AppID 7000 ... 🎯 Tomb Raider: Legend
+[144/308] AppID 7010 ... 🎯 Project: Snowblind
+[145/308] AppID 7020 ... 🎯 Rogue Trooper
+[146/308] AppID 7510 ... 🎯 X-Blades
+[147/308] AppID 7800 ... 🎯 Stubbs the Zombie in Rebel Without a Pulse
+[148/308] AppID 7860 ... 🎯 NecroVision
+[149/308] AppID 7940 ... 🎯 Call of Duty® 4: Modern Warfare® (2007)
+[150/308] AppID 8000 ... 🎯 Tomb Raider: Anniversary
+[151/308] AppID 8080 ... 🎯 Kane and Lynch: Dead Men™
+[152/308] AppID 8100 ... 🎯 Conflict: Denied Ops
+[153/308] AppID 8140 ... 🎯 Tomb Raider: Underworld
+[154/308] AppID 8170 ... 🎯 Battlestations Pacific
+[155/308] AppID 8190 ... 🎯 Just Cause 2
+[156/308] AppID 8200 ... ⚠️  kein Store-Eintrag
+[156/308] AppID 8210 ... ⚠️  kein Store-Eintrag
+[156/308] AppID 8220 ... ⚠️  kein Store-Eintrag
+[156/308] AppID 8230 ... ⚠️  kein Store-Eintrag
+[156/308] AppID 8240 ... ⚠️  kein Store-Eintrag
+[156/308] AppID 8250 ... ⚠️  kein Store-Eintrag
+[156/308] AppID 8500 ... 🎯 EVE Online
+[157/308] AppID 8980 ... 🎯 Borderlands Game of the Year
+[158/308] AppID 9000 ... ⚠️  kein Store-Eintrag
+[158/308] AppID 9010 ... ⚠️  kein Store-Eintrag
+[158/308] AppID 9030 ... ⚠️  kein Store-Eintrag
+[158/308] AppID 9040 ... ⚠️  kein Store-Eintrag
+[158/308] AppID 9050 ... 🎯 DOOM 3
+[159/308] AppID 9060 ... 🎯 HeXen II
+[160/308] AppID 9160 ... ⚠️  kein Store-Eintrag
+[160/308] AppID 9180 ... 🎯 Commander Keen
+[161/308] AppID 9460 ... 🎯 Frontlines™: Fuel of War™
+[162/308] AppID 9480 ... 🎯 Saints Row 2
+[163/308] AppID 9500 ... 🎯 Gish
+[164/308] AppID 9710 ... 🎯 Desperados 2: Cooper's Revenge
+[165/308] AppID 9760 ... 🎯 Act of War: High Treason
+[166/308] AppID 9800 ... 🎯 Death to Spies
+[167/308] AppID 9940 ... 🎯 Blade Kitten
+[168/308] AppID 9970 ... 🎯 Star Raiders
+[169/308] AppID 10090 ... 🎯 Call of Duty: World at War
+[170/308] AppID 10120 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 10130 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 10150 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 10180 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 10190 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 10220 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 10460 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 10680 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 11200 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 11240 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 11280 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 11340 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 11390 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 11550 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 11610 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12100 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12110 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12120 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12130 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12140 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12150 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12180 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12200 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12220 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12320 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12330 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12390 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12530 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12790 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 12830 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13140 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13200 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13210 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13230 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13240 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13250 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13540 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13560 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13570 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13580 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13620 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 13630 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15000 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15080 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15100 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15120 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15130 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15190 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15270 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15300 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15390 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15520 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15540 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15560 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15740 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 15750 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 16450 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 16710 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 16720 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 16730 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 16900 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 17080 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 17430 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 17460 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 17470 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 17500 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 17570 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 17580 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 17710 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 17740 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 18040 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 18050 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 18070 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 18110 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 18120 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 18700 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 18820 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 19030 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 19080 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 19200 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 19320 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 19680 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 19800 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 19810 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 19830 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 19900 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 20500 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 20510 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 20530 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 20550 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 20700 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 20710 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 20820 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 20900 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21000 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21010 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21030 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21090 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21100 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21110 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21120 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21130 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21400 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21660 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21670 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21680 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21690 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 21980 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22120 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22180 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22200 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22230 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22310 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22350 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22380 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22450 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22610 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22650 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 22670 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 23460 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 23530 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 24200 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 24240 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 24720 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 24800 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 24840 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 24880 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 24960 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 25000 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 25010 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 25700 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 26000 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 26300 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 27330 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 27900 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 27920 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 27940 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 28000 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 29700 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 29800 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 29900 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 31220 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 31270 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 31300 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 31700 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 31890 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32200 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32330 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32350 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32380 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32390 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32400 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32420 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32430 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32500 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32510 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32610 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32620 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32630 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32640 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32650 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32660 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32670 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32680 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32750 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32770 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 32800 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33100 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33110 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33120 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33130 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33180 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33220 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33229 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33230 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33390 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33550 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33620 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33900 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33910 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33930 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 33980 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34010 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34270 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34272 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34273 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34274 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34276 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34277 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34279 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34280 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34281 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34282 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34284 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34288 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34310 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34313 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34314 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34315 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34316 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34410 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34810 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34830 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34870 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 34920 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 35000 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 35010 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 35130 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 35310 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 35450 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 35460 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 36000 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 36900 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 36910 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 37000 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 37010 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 37100 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 37700 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 38430 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 38450 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 38460 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 38490 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 38740 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 39120 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 39160 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 39530 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 39560 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 39630 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 39640 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 39670 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 39800 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 39900 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 40500 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 40990 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41000 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41014 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41050 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41060 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41100 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41300 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41400 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41600 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41660 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41700 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41730 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 41740 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 42120 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 42170 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 42500 ... ⚠️  kein Store-Eintrag
+[170/308] AppID 42670 ... 🎯 Singularity™
+[171/308] AppID 42680 ... 🎯 Call of Duty®: Modern Warfare® 3 (2011)
+[172/308] AppID 42700 ... 🎯 Call of Duty®: Black Ops
+[173/308] AppID 42710 ... 🎯 Call of Duty®: Black Ops
+[174/308] AppID 43000 ... 🎯 Front Mission Evolved
+[175/308] AppID 43190 ... 🎯 The Haunted: Hells Reach
+[176/308] AppID 44100 ... ⚠️  kein Store-Eintrag
+[176/308] AppID 44340 ... 🎯 Operation Flashpoint: Red River
+[177/308] AppID 45700 ... ⚠️  kein Store-Eintrag
+[177/308] AppID 45710 ... 🎯 Dark Void™
+[178/308] AppID 45720 ... 🎯 Lost Planet: Extreme Condition Colonies Edition
+[179/308] AppID 45730 ... 🎯 Dark Void™ Zero
+[180/308] AppID 45740 ... ⚠️  kein Store-Eintrag
+[180/308] AppID 45750 ... ⚠️  kein Store-Eintrag
+[180/308] AppID 45760 ... 🎯 Ultra Street Fighter® IV
+[181/308] AppID 45770 ... ⚠️  kein Store-Eintrag
+[181/308] AppID 46200 ... 🎯 A.I.M. Racing
+[182/308] AppID 46250 ... 🎯 NecroVisioN: Lost Company
+[183/308] AppID 46400 ... 🎯 Greed: Black Border
+[184/308] AppID 46410 ... 🎯 Avencast: Rise of the Mage
+[185/308] AppID 46520 ... 🎯 Wasteland Angel
+[186/308] AppID 46540 ... 🎯 Trapped Dead
+[187/308] AppID 46600 ... ⚠️  kein Store-Eintrag
+[187/308] AppID 47110 ... ⚠️  kein Store-Eintrag
+[187/308] AppID 47120 ... ⚠️  kein Store-Eintrag
+[187/308] AppID 47780 ... 🎯 Dead Space™ 2
+[188/308] AppID 47880 ... 🎯 Battlefield: Bad Company 2 Vietnam
+[189/308] AppID 48190 ... 🎯 Assassin’s Creed® Brotherhood
+[190/308] AppID 48700 ... 🎯 Mount & Blade: Warband
+[191/308] AppID 48720 ... 🎯 Mount & Blade: With Fire & Sword
+[192/308] AppID 49540 ... 🎯 Aliens: Colonial Marines Collection
+[193/308] AppID 49600 ... 🎯 Beat Hazard
+[194/308] AppID 49800 ... 🎯 Flight of the Icarus
+[195/308] AppID 49900 ... ⚠️  kein Store-Eintrag
+[195/308] AppID 50130 ... 🎯 Mafia II (Classic)
+[196/308] AppID 50300 ... 🎯 Spec Ops: The Line
+[197/308] AppID 50510 ... 🎯 Burn Zombie Burn!
+[198/308] AppID 55100 ... 🎯 Homefront
+[199/308] AppID 55110 ... 🎯 Red Faction®: Armageddon™
+[200/308] AppID 55150 ... 🎯 Warhammer 40,000: Space Marine - Anniversary Edition
+[201/308] AppID 55230 ... 🎯 Saints Row: The Third
+[202/308] AppID 57000 ... 🎯 NyxQuest: Kindred Spirits
+[203/308] AppID 57400 ... 🎯 Batman: Arkham City
+[204/308] AppID 57680 ... 🎯 The First Templar - Steam Special Edition
+[205/308] AppID 57700 ... 🎯 Who's That Flying?!
+[206/308] AppID 57900 ... 🎯 Duke Nukem Forever
+[207/308] AppID 60340 ... 🎯 Luxor: 5th Passage
+[208/308] AppID 60600 ... ⚠️  kein Store-Eintrag
+[208/308] AppID 61730 ... 🎯 Critter Crunch
+[209/308] AppID 62000 ... ⚠️  kein Store-Eintrag
+[209/308] AppID 63000 ... 🎯 HOARD
+[210/308] AppID 63200 ... 🎯 Monday Night Combat
+[211/308] AppID 63380 ... 🎯 Sniper Elite V2
+[212/308] AppID 63500 ... 🎯 Swords and Soldiers HD
+[213/308] AppID 63700 ... 🎯 BIT.TRIP BEAT
+[214/308] AppID 63710 ... 🎯 BIT.TRIP RUNNER
+[215/308] AppID 65560 ... 🎯 Painkiller Redemption
+[216/308] AppID 65740 ... 🎯 Carrier Command: Gaea Mission
+[217/308] AppID 65780 ... 🎯 ARMA: Gold Edition
+[218/308] AppID 65790 ... 🎯 ARMA: Cold War Assault
+[219/308] AppID 65800 ... 🎯 Dungeon Defenders
+[220/308] AppID 65930 ... 🎯 The Bureau: XCOM Declassified
+[221/308] AppID 67000 ... 🎯 The Polynomial - Space of the music
+[222/308] AppID 67370 ... 🎯 The Darkness II
+[223/308] AppID 70000 ... 🎯 Dino D-Day
+[224/308] AppID 70300 ... 🎯 VVVVVV
+[225/308] AppID 70420 ... 🎯 Chantelise - A Tale of Two Sisters
+[226/308] AppID 70500 ... ⚠️  kein Store-Eintrag
+[226/308] AppID 71000 ... 🎯 Evochron Mercenary
+[227/308] AppID 71112 ... 🎯 Golden Axe™ II
+[228/308] AppID 71113 ... 🎯 Sonic The Hedgehog
+[229/308] AppID 71115 ... 🎯 Virtua Fighter™ 2
+[230/308] AppID 71116 ... 🎯 Alien Soldier
+[231/308] AppID 71117 ... 🎯 Gunstar Heroes
+[232/308] AppID 71164 ... 🎯 Streets of Rage
+[233/308] AppID 71165 ... 🎯 Streets of Rage 2
+[234/308] AppID 71230 ... 🎯 Crazy Taxi
+[235/308] AppID 71260 ... 🎯 Space Channel 5: Part 2
+[236/308] AppID 71340 ... 🎯 Sonic Generations Collection
+[237/308] AppID 80000 ... ⚠️  kein Store-Eintrag
+[237/308] AppID 91200 ... 🎯 Anomaly: Warzone Earth
+[238/308] AppID 91330 ... 🎯 Iron Front: Digital War Edition
+[239/308] AppID 91600 ... 🎯 Sanctum
+[240/308] AppID 91700 ... 🎯 E.Y.E: Divine Cybermancy
+[241/308] AppID 91900 ... ⚠️  kein Store-Eintrag
+[241/308] AppID 92000 ... 🎯 Hydrophobia: Prophecy
+[242/308] AppID 92200 ... ⚠️  kein Store-Eintrag
+[242/308] AppID 92210 ... ⚠️  kein Store-Eintrag
+[242/308] AppID 92220 ... ⚠️  kein Store-Eintrag
+[242/308] AppID 92300 ... 🎯 A.R.E.S.: Extinction Agenda
+[243/308] AppID 92600 ... ⚠️  kein Store-Eintrag
+[243/308] AppID 92700 ... 🎯 Shadow Harvest: Phantom Ops
+[244/308] AppID 92900 ... 🎯 Agricultural Simulator 2011: Extended Edition
+[245/308] AppID 93200 ... 🎯 Revenge of the Titans
+[246/308] AppID 94200 ... ⚠️  kein Store-Eintrag
+[246/308] AppID 94400 ... 🎯 Nidhogg
+[247/308] AppID 94590 ... 🎯 Puzzle Agent 2
+[248/308] AppID 94600 ... 🎯 Hector: Episode 1
+[249/308] AppID 94610 ... 🎯 Hector: Episode 2
+[250/308] AppID 95000 ... ⚠️  kein Store-Eintrag
+[250/308] AppID 95300 ... ⚠️  kein Store-Eintrag
+[250/308] AppID 95400 ... 🎯 ibb & obb
+[251/308] AppID 95900 ... 🎯 Air Conflicts: Secret Wars
+[252/308] AppID 96100 ... 🎯 Defy Gravity Extended
+[253/308] AppID 96200 ... 🎯 Steel Storm: Burning Retribution
+[254/308] AppID 96800 ... 🎯 Nexuiz
+[255/308] AppID 96900 ... 🎯 Slam Bolt Scrappers
+[256/308] AppID 97000 ... 🎯 Solar 2
+[257/308] AppID 97100 ... 🎯 Section 8®: Prejudice™
+[258/308] AppID 98300 ... 🎯 Toy Soldiers
+[259/308] AppID 98400 ... 🎯 Hard Reset Extended Edition
+[260/308] AppID 98500 ... 🎯 Naval Warfare
+[261/308] AppID 98600 ... 🎯 Demolition Inc.
+[262/308] AppID 98900 ... 🎯 Alien Hallway
+[263/308] AppID 99100 ... ⚠️  kein Store-Eintrag
+[263/308] AppID 99120 ... 🎯 Yar's Revenge
+[264/308] AppID 99400 ... 🎯 Garshasp: The Monster Slayer
+[265/308] AppID 99410 ... 🎯 Garshasp: Temple of the Dragon
+[266/308] AppID 99830 ... 🎯 Crysis 2 - Maximum Edition
+[267/308] AppID 99900 ... 🎯 Spiral Knights
+[268/308] AppID 102400 ... 🎯 Vertex Dispenser
+[269/308] AppID 102500 ... 🎯 Kingdoms of Amalur: Reckoning™
+[270/308] AppID 102810 ... 🎯 Gatling Gears
+[271/308] AppID 104100 ... 🎯 Inside a Star-filled Sky
+[272/308] AppID 104900 ... 🎯 ORION: Prelude
+[273/308] AppID 105420 ... 🎯 Ms. Splosion Man
+[274/308] AppID 105700 ... ⚠️  kein Store-Eintrag
+[274/308] AppID 105800 ... 🎯 PixelJunk™ Eden
+[275/308] AppID 107200 ... 🎯 Space Pirates and Zombies
+[276/308] AppID 107600 ... 🎯 Waves
+[277/308] AppID 107800 ... ⚠️  kein Store-Eintrag
+[277/308] AppID 108500 ... ⚠️  kein Store-Eintrag
+[277/308] AppID 108700 ... 🎯 Death Rally
+[278/308] AppID 109500 ... ⚠️  kein Store-Eintrag
+[278/308] AppID 109600 ... 🎯 Neverwinter
+[279/308] AppID 110500 ... ⚠️  kein Store-Eintrag
+[279/308] AppID 110600 ... ⚠️  kein Store-Eintrag
+[279/308] AppID 110610 ... ⚠️  kein Store-Eintrag
+[279/308] AppID 110630 ... ⚠️  kein Store-Eintrag
+[279/308] AppID 111300 ... ⚠️  kein Store-Eintrag
+[279/308] AppID 111400 ... 🎯 Bunch of Heroes
+[280/308] AppID 111600 ... 🎯 Serious Sam Double D XXL
+[281/308] AppID 111900 ... 🎯 Guardians of Middle-earth
+[282/308] AppID 113020 ... 🎯 Monaco: What's Yours Is Mine
+[283/308] AppID 113400 ... 🎯 APB Reloaded
+[284/308] AppID 115300 ... 🎯 Call of Duty®: Modern Warfare® 3 (2011)
+[285/308] AppID 115320 ... 🎯 Prototype 2
+[286/308] AppID 115800 ... 🎯 Owlboy
+[287/308] AppID 116120 ... 🎯 Lightfish
+[288/308] AppID 200020 ... 🎯 Global Ops: Commando Libya
+[289/308] AppID 200210 ... 🎯 Realm of the Mad God Exalt
+[290/308] AppID 200410 ... ⚠️  kein Store-Eintrag
+[290/308] AppID 200900 ... 🎯 Cave Story+
+[291/308] AppID 201070 ... ⚠️  kein Store-Eintrag
+[291/308] AppID 201480 ... 🎯 Serious Sam: The Random Encounter
+[292/308] AppID 201570 ... 🎯 Really Big Sky
+[293/308] AppID 201790 ... 🎯 Orcs Must Die! 2
+[294/308] AppID 201810 ... 🎯 Wolfenstein: The New Order
+[295/308] AppID 201870 ... 🎯 Assassin's Creed® Revelations
+[296/308] AppID 202070 ... 🎯 Choplifter HD
+[297/308] AppID 202170 ... 🎯 Sleeping Dogs
+[298/308] AppID 202370 ... 🎯 Scary Girl
+[299/308] AppID 202410 ... ⚠️  kein Store-Eintrag
+[299/308] AppID 202710 ... 🎯 Demigod
+[300/308] AppID 202730 ... ⚠️  kein Store-Eintrag
+[300/308] AppID 202750 ... 🎯 Alan Wake's American Nightmare
+[301/308] AppID 202970 ... 🎯 Call of Duty®: Black Ops II
+[302/308] AppID 202990 ... 🎯 Call of Duty®: Black Ops II
+[303/308] AppID 203140 ... 🎯 Hitman: Absolution™
+[304/308] AppID 203160 ... 🎯 Tomb Raider Game of the Year
+[305/308] AppID 203210 ... 🎯 Titan Attacks!
+[306/308] AppID 203290 ... ⚠️  kein Store-Eintrag
+[306/308] AppID 203510 ... 🎯 Fortune Summoners
+[307/308] AppID 203750 ... 🎯 Binary Domain
+[308/308] AppID 203990 ... 🎯 SATAZIUS
+
+════════════════════════════════════
+✅ Expand-Import abgeschlossen!
+   Neu importiert: 308
+   Übersprungen:   316
+   Fehler:         0
+   Spiele in DB:   500
+════════════════════════════════════
+

@@ -1,0 +1,402 @@
+
+🎮 Steam Games Import
+═══════════════════════════════════════
+📋 Anzahl Spiele: 192
+🌐 Genres werden von Steam API geladen
+═══════════════════════════════════════
+
+✅ Datenbankverbindung hergestellt
+
+[1/192] 🎯 Counter-Strike: Source (AppID: 240)
+        🏷️  Genres: Action
+[2/192] 🎯 Half-Life: Source (AppID: 280)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[3/192] 🎯 Half-Life Deathmatch: Source (AppID: 360)
+        🏷️  Genres: Action
+[4/192] 🎯 Disciples II: Rise of the Elves (AppID: 1630)
+        🏷️  Genres: Strategy
+[5/192] 🎯 Disciples II: Gallean's Return (AppID: 1640)
+        🏷️  Genres: Strategy
+[6/192] 🎯 Jagged Alliance 2: Gold Pack (AppID: 12370)
+        🏷️  Genres: Strategy
+[7/192] 🎯 Jagged Alliance 2 Gold: Unfinished Business (AppID: 12380)
+        🏷️  Genres: Strategy
+[8/192] 🎯 BioShock (AppID: 7670)
+        🏷️  Genres: Action, RPG
+[9/192] 🎯 BioShock Remastered (AppID: 409710)
+        🏷️  Genres: Action, RPG
+[10/192] 🎯 Half-Life 2 (AppID: 220)
+        🏷️  Genres: Action
+[11/192] 🎯 Half-Life 2: Deathmatch (AppID: 320)
+        🏷️  Genres: Action
+[12/192] 🎯 Half-Life 2: Lost Coast (AppID: 340)
+        🏷️  Genres: Action
+[13/192] 🎯 Half-Life 2: Episode One (AppID: 380)
+        🏷️  Genres: Action
+[14/192] 🎯 Portal (AppID: 400)
+        🏷️  Genres: Action
+[15/192] 🎯 Half-Life 2: Episode Two (AppID: 420)
+        🏷️  Genres: Action
+[16/192] 🎯 Far Cry (AppID: 13520)
+        🏷️  Genres: Action
+[17/192] 🎯 GRID (AppID: 12750)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[18/192] 🎯 Grand Theft Auto IV (AppID: 12210)
+        🏷️  Genres: Action, Adventure
+[19/192] 🎯 Spore (AppID: 17390)
+        🏷️  Genres: Action, Adventure, Casual, RPG, Simulation, Strategy
+[20/192] 🎯 Command and Conquer: Red Alert 3 (AppID: 17480)
+        🏷️  Genres: Action, Strategy
+[21/192] 🎯 Mirror's Edge (AppID: 17410)
+        🏷️  Genres: Action, Adventure
+[22/192] 🎯 Killing Floor (AppID: 1250)
+        🏷️  Genres: Action
+[23/192] 🎯 Killing Floor Mod: Defence Alliance 2 (AppID: 35420)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[24/192] 🎯 Plants vs. Zombies: Game of the Year (AppID: 3590)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[25/192] 🎯 Port Royale 2 (AppID: 12470)
+        🏷️  Genres: Strategy
+[26/192] 🎯 Trine (AppID: 35700)
+        🏷️  Genres: Action, Adventure, Indie
+[27/192] 🎯 Torchlight (AppID: 41500)
+        🏷️  Genres: RPG
+[28/192] 🎯 Command and Conquer 3: Tiberium Wars (AppID: 24790)
+        🏷️  Genres: Action, Strategy
+[29/192] 🎯 Command and Conquer 3: Kane's Wrath (AppID: 24810)
+        🏷️  Genres: Action, Strategy
+[30/192] 🎯 Left 4 Dead 2 (AppID: 550)
+        🏷️  Genres: Action
+[31/192] 🎯 Left 4 Dead 2 Beta (AppID: 223530)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[32/192] 🎯 King's Bounty: Armored Princess (AppID: 3170)
+        🏷️  Genres: RPG, Strategy
+[33/192] 🎯 Fallout 3 - Game of the Year Edition (AppID: 22370)
+        🏷️  Genres: RPG
+[34/192] 🎯 Warhammer 40,000: Dawn of War II - Chaos Rising (AppID: 20570)
+        🏷️  Genres: Strategy
+[35/192] 🎯 BioShock 2 (AppID: 8850)
+        🏷️  Genres: Action
+[36/192] 🎯 BioShock 2 Remastered (AppID: 409720)
+        🏷️  Genres: Action, RPG
+[37/192] 🎯 Command and Conquer 4: Tiberian Twilight (AppID: 47700)
+        🏷️  Genres: Adventure, Strategy
+[38/192] 🎯 Batman: Arkham Asylum GOTY Edition (AppID: 35140)
+        🏷️  Genres: Action, Adventure
+[39/192] 🎯 Commandos: Behind Enemy Lines (AppID: 6800)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[40/192] 🎯 Commandos: Beyond the Call of Duty (AppID: 6810)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[41/192] 🎯 Commandos 2: Men of Courage (AppID: 6830)
+        🏷️  Genres: Strategy
+[42/192] 🎯 Commandos 3: Destination Berlin (AppID: 6840)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[43/192] 🎯 Tidalis (AppID: 40420)
+        🏷️  Genres: Casual, Indie
+[44/192] 🎯 SimCity 4 Deluxe (AppID: 24780)
+        🏷️  Genres: Simulation, Strategy
+[45/192] 🎯 Sid Meier's Civilization V (AppID: 8930)
+        🏷️  Genres: Strategy
+[46/192] 🎯 Amnesia: The Dark Descent (AppID: 57300)
+        🏷️  Genres: Action, Adventure, Indie
+[47/192] 🎯 The Secret of Monkey Island: Special Edition (AppID: 32360)
+        🏷️  Genres: Adventure
+[48/192] 🎯 Monkey Island 2: Special Edition (AppID: 32460)
+        🏷️  Genres: Adventure
+[49/192] 🎯 Shank (AppID: 6120)
+        🏷️  Genres: Action, Indie
+[50/192] 🎯 Fallout: New Vegas RU (AppID: 22490)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[51/192] 🎯 Super Meat Boy (AppID: 40800)
+        🏷️  Genres: Indie
+[52/192] 🎯 SpellForce: Platinum Edition (AppID: 39540)
+        🏷️  Genres: Action, RPG
+[53/192] 🎯 SpellForce 2 - Anniversary Edition (AppID: 39550)
+        🏷️  Genres: RPG, Strategy
+[54/192] 🎯 Terraria (AppID: 105600)
+        🏷️  Genres: Action, Adventure, Indie, RPG
+[55/192] 🎯 Syberia (AppID: 46500)
+        🏷️  Genres: Adventure, Casual
+[56/192] 🎯 Syberia 2 (AppID: 46510)
+        🏷️  Genres: Adventure
+[57/192] 🎯 Prince of Persia: Warrior Within (AppID: 13500)
+        🏷️  Genres: Action, Adventure
+[58/192] 🎯 Prince of Persia: The Two Thrones (AppID: 13530)
+        🏷️  Genres: Action, Adventure
+[59/192] 🎯 Prince of Persia: The Sands of Time (AppID: 13600)
+        🏷️  Genres: Action, Adventure
+[60/192] 🎯 Prince of Persia (AppID: 19980)
+        🏷️  Genres: Action, Adventure
+[61/192] 🎯 Prince of Persia: The Forgotten Sands (AppID: 33320)
+        🏷️  Genres: Action, Adventure
+[62/192] 🎯 Medal of Honor(TM) Single Player (AppID: 47790)
+        🏷️  Genres: Action
+[63/192] 🎯 Medal of Honor(TM) Multiplayer (AppID: 47830)
+        🏷️  Genres: Action
+[64/192] 🎯 LIMBO (AppID: 48000)
+        🏷️  Genres: Action, Adventure, Indie
+[65/192] 🎯 Bastion (AppID: 107100)
+        🏷️  Genres: Action, Indie, RPG
+[66/192] 🎯 Might & Magic: Clash of Heroes (AppID: 61700)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[67/192] 🎯 Deus Ex: Human Revolution (AppID: 28050)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[68/192] 🎯 The Binding of Isaac (AppID: 113200)
+        🏷️  Genres: Action, Adventure, Indie, RPG
+[69/192] 🎯 Orcs Must Die! (AppID: 102600)
+        🏷️  Genres: Action, Indie, Strategy
+[70/192] 🎯 Might & Magic: Heroes VI (AppID: 48220)
+        🏷️  Genres: RPG, Strategy
+[71/192] 🎯 Deus Ex: Human Revolution - The Missing Link (AppID: 201280)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[72/192] 🎯 RAGE (AppID: 9200)
+        🏷️  Genres: Action
+[73/192] 🎯 Gothic 3 (AppID: 39500)
+        🏷️  Genres: Action, RPG
+[74/192] 🎯 Gothic II: Gold Edition (AppID: 39510)
+        🏷️  Genres: Action, RPG
+[75/192] 🎯 ArcaniA (AppID: 39690)
+        🏷️  Genres: RPG
+[76/192] 🎯 Gothic (AppID: 65540)
+        🏷️  Genres: Action, RPG
+[77/192] 🎯 Gothic 3 Forsaken Gods Enhanced Edition (AppID: 65600)
+        🏷️  Genres: RPG
+[78/192] 🎯 ArcaniA: Fall of Setarrif (AppID: 65610)
+        🏷️  Genres: RPG
+[79/192] 🎯 Serious Sam 3: BFE (AppID: 41070)
+        🏷️  Genres: Action, Indie
+[80/192] 🎯 Serious Sam Fusion 2017 (beta) (AppID: 564310)
+        🏷️  Genres: Action, Indie
+[81/192] 🎯 Magicka (AppID: 42910)
+        🏷️  Genres: Action, RPG
+[82/192] 🎯 World Basketball Manager 2010 (AppID: 46740)
+        🏷️  Genres: Simulation
+[83/192] 🎯 Dota 2 Test (AppID: 205790)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[84/192] 🎯 Portal 2 (AppID: 620)
+        🏷️  Genres: Action, Adventure
+[85/192] 🎯 Renegade Ops (AppID: 99300)
+        🏷️  Genres: Action
+[86/192] 🎯 Dustforce (AppID: 65300)
+        🏷️  Genres: Action, Indie
+[87/192] 🎯 Shank 2 (AppID: 102840)
+        🏷️  Genres: Action, Adventure, Indie
+[88/192] 🎯 Jagged Alliance - Back in Action (AppID: 57740)
+        🏷️  Genres: RPG, Simulation, Strategy
+[89/192] 🎯 Alan Wake (AppID: 108710)
+        🏷️  Genres: Action, Adventure
+[90/192] 🎯 WARP (AppID: 102850)
+        🏷️  Genres: Action, Adventure, Indie
+[91/192] 🎯 Shoot Many Robots (AppID: 96400)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[92/192] 🎯 Legend of Grimrock (AppID: 207170)
+        🏷️  Genres: Adventure, Indie, RPG
+[93/192] 🎯 Company of Heroes - Legacy Edition (AppID: 4560)
+        🏷️  Genres: Action, Strategy
+[94/192] 🎯 Company of Heroes  (AppID: 228200)
+        🏷️  Genres: Action, Strategy
+[95/192] 🎯 Company of Heroes: Opposing Fronts (AppID: 9340)
+        🏷️  Genres: Action, Strategy
+[96/192] 🎯 Magic: The Gathering - Duels of the Planeswalkers 2013 (AppID: 97330)
+        🏷️  Genres: Strategy
+[97/192] 🎯 Crysis (AppID: 17300)
+        🏷️  Genres: Action
+[98/192] 🎯 Crysis Warhead (AppID: 17330)
+        🏷️  Genres: Action
+[99/192] 🎯 Crysis Wars (AppID: 17340)
+        🏷️  Genres: Action
+[100/192] 🎯 Crysis 2 Maximum Edition (AppID: 108800)
+        🏷️  Genres: Action
+[101/192] 🎯 Jagged Alliance: Crossfire (AppID: 205810)
+        🏷️  Genres: RPG, Simulation, Strategy
+[102/192] 🎯 Counter-Strike: Global Offensive (AppID: 730)
+        🏷️  Genres: Action, Free To Play
+[103/192] 🎯 I Am Alive (AppID: 214250)
+        🏷️  Genres: Action, Adventure
+[104/192] 🎯 Batman: Arkham City GOTY (AppID: 200260)
+        🏷️  Genres: Action, Adventure
+[105/192] 🎯 FTL: Faster Than Light (AppID: 212680)
+        🏷️  Genres: Indie, Simulation, Strategy
+[106/192] 🎯 Torchlight II (AppID: 200710)
+        🏷️  Genres: Action, Adventure, Indie, RPG
+[107/192] 🎯 Mark of the Ninja (AppID: 214560)
+        🏷️  Genres: Action, Adventure, Indie
+[108/192] 🎯 Giana Sisters: Twisted Dreams (AppID: 223220)
+        🏷️  Genres: Action, Indie
+[109/192] 🎯 Deadlight (AppID: 211400)
+        🏷️  Genres: Action, Adventure, Indie
+[110/192] 🎯 Pid  (AppID: 218740)
+        🏷️  Genres: Adventure, Indie
+[111/192] 🎯 Metro 2033 (AppID: 43110)
+        🏷️  Genres: Action
+[112/192] 🎯 Darksiders (AppID: 50620)
+        🏷️  Genres: Action, Adventure
+[113/192] 🎯 Darksiders II (AppID: 50650)
+        🏷️  Genres: Action, Adventure, RPG
+[114/192] 🎯 Darksiders II Deathinitive Edition (AppID: 388410)
+        🏷️  Genres: Action, Adventure, RPG
+[115/192] 🎯 Darksiders Warmastered Edition (AppID: 462780)
+        🏷️  Genres: Action, Adventure, RPG
+[116/192] 🎯 Psychonauts (AppID: 3830)
+        🏷️  Genres: Action
+[117/192] 🎯 Costume Quest (AppID: 115100)
+        🏷️  Genres: Adventure, Casual, RPG
+[118/192] 🎯 Stacking (AppID: 115110)
+        🏷️  Genres: Adventure, Indie
+[119/192] 🎯 Iron Brigade (AppID: 115120)
+        🏷️  Genres: Action, Strategy
+[120/192] 🎯 Brütal Legend (AppID: 225260)
+        🏷️  Genres: Action, Adventure, Strategy
+[121/192] 🎯 Path of Exile (AppID: 238960)
+        🏷️  Genres: Action, Adventure, Indie, Massively Multiplayer, RPG, Free To Play
+[122/192] 🎯 BioShock Infinite (AppID: 8870)
+        🏷️  Genres: Action
+[123/192] 🎯 Zack Zero (AppID: 234290)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[124/192] 🎯 Don't Starve (AppID: 219740)
+        🏷️  Genres: Adventure, Indie, Simulation
+[125/192] 🎯 Don't Starve Together (AppID: 322330)
+        🏷️  Genres: Action, Adventure, Indie, RPG, Simulation, Strategy
+[126/192] 🎯 Shadowrun Returns (AppID: 234650)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[127/192] 🎯 The Elder Scrolls V: Skyrim (AppID: 72850)
+        🏷️  Genres: RPG
+[128/192] 🎯 Trine 2 (AppID: 35720)
+        🏷️  Genres: Action, Adventure, Indie
+[129/192] 🎯 Unepic (AppID: 233980)
+        🏷️  Genres: Action, Indie, RPG
+[130/192] 🎯 Penny Arcade's On the Rain-Slick Precipice of Darkness 4 (AppID: 237570)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[131/192] 🎯 The Forest (AppID: 242760)
+        🏷️  Genres: Action, Adventure, Indie, Simulation
+[132/192] 🎯 Sid Meier's Civilization IV (AppID: 3900)
+        🏷️  Genres: Strategy
+[133/192] 🎯 Sid Meier's Civilization IV (AppID: 34440)
+        🏷️  Genres: Strategy
+[134/192] 🎯 Craft The World (AppID: 248390)
+        🏷️  Genres: Indie, RPG, Simulation, Strategy
+[135/192] 🎯 A Walk in the Dark (AppID: 248730)
+        🏷️  Genres: Action, Indie
+[136/192] 🎯 FORCED (AppID: 249990)
+        🏷️  Genres: Action, Adventure, Indie, RPG
+[137/192] 🎯 Dishonored RHCP (AppID: 217980)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[138/192] 🎯 Jagged Alliance Flashback (AppID: 256010)
+        🏷️  Genres: Indie, RPG, Strategy
+[139/192] 🎯 Assassin's Creed IV Black Flag (AppID: 242050)
+        🏷️  Genres: Action, Adventure
+[140/192] 🎯 Batman™: Arkham Origins (AppID: 209000)
+        🏷️  Genres: Action, Adventure
+[141/192] 🎯 Darkest Dungeon (AppID: 262060)
+        🏷️  Genres: Indie, RPG, Strategy
+[142/192] 🎯 Divinity: Original Sin (Classic) (AppID: 230230)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[143/192] 🎯 Divinity: Original Sin Enhanced Edition (AppID: 373420)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[144/192] 🎯 Grand Theft Auto V (AppID: 271590)
+        🏷️  Genres: Action, Adventure
+[145/192] 🎯 Torment: Tides of Numenera (AppID: 272270)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[146/192] 🎯 Might & Magic X - Legacy  (AppID: 238750)
+        🏷️  Genres: RPG
+[147/192] 🎯 Might & Magic VI (AppID: 243380)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[148/192] 🎯 Thief (AppID: 239160)
+        🏷️  Genres: Action, Adventure
+[149/192] 🎯 Deus Ex: The Fall (AppID: 258180)
+        🏷️  Genres: Action, Adventure, RPG
+[150/192] 🎯 The Bard's Tale (AppID: 41900)
+        🏷️  Genres: Action, Adventure, RPG
+[151/192] 🎯 Wasteland 2 (AppID: 240760)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[152/192] 🎯 Wasteland 1 - The Original Classic (AppID: 259130)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[153/192] 🎯 Wasteland 2: Director's Cut (AppID: 404730)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[154/192] 🎯 Sid Meier's Civilization VI (AppID: 289070)
+        🏷️  Genres: Strategy
+[155/192] 🎯 The Fall (AppID: 290770)
+        🏷️  Genres: Action, Adventure, Indie
+[156/192] 🎯 Endless Legend (AppID: 289130)
+        🏷️  Genres: RPG, Strategy
+[157/192] 🎯 Transistor (AppID: 237930)
+        🏷️  Genres: Action, Indie, RPG
+[158/192] 🎯 Shadowrun: Dragonfall - Director's Cut (AppID: 300550)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[159/192] 🎯 Watch_Dogs (AppID: 243470)
+        🏷️  Genres: Action, Adventure
+[160/192] 🎯 Fallout (AppID: 38400)
+        🏷️  Genres: RPG
+[161/192] 🎯 Fallout 2 (AppID: 38410)
+        🏷️  Genres: RPG
+[162/192] 🎯 Fallout Tactics (AppID: 38420)
+        🏷️  Genres: Strategy
+[163/192] 🎯 Space Hack (AppID: 315260)
+        🏷️  Genres: Action, Indie, RPG
+[164/192] 🎯 Sid Meier's Civilization: Beyond Earth (AppID: 65980)
+        🏷️  Genres: Strategy
+[165/192] 🎯 Dying Light (AppID: 239140)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[166/192] 🎯 Warlocks vs Shadows (AppID: 330270)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[167/192] 🎯 Assassin's Creed Unity (AppID: 289650)
+        🏷️  Genres: Action, Adventure
+[168/192] 🎯 This War of Mine (AppID: 282070)
+        🏷️  Genres: Adventure, Indie, Simulation
+[169/192] 🎯 Besiege (AppID: 346010)
+        🏷️  Genres: Indie, Simulation
+[170/192] 🎯 Shadowrun: Hong Kong - Extended Edition (AppID: 346940)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[171/192] 🎯 Hand of Fate (AppID: 266510)
+        🏷️  Genres: Action, Indie, RPG
+[172/192] 🎯 Cities: Skylines (AppID: 255710)
+        🏷️  Genres: Simulation, Strategy
+[173/192] 🎯 Sheltered (AppID: 356040)
+        🏷️  Genres: Indie, RPG, Strategy
+[174/192] 🎯 Pillars of Eternity (AppID: 291650)
+        🏷️  Genres: RPG
+[175/192] 🎯 Tyranny (AppID: 362960)
+        🏷️  Genres: Adventure, RPG
+[176/192] 🎯 Fallout 4 (AppID: 377160)
+        🏷️  Genres: RPG
+[177/192] 🎯 Thea: The Awakening (AppID: 378720)
+        🏷️  Genres: Indie, RPG, Strategy
+[178/192] 🎯 Victor Vran (AppID: 345180)
+        🏷️  Genres: Action, Adventure, Indie, RPG
+[179/192] 🎯 Armello (AppID: 290340)
+        🏷️  Genres: Adventure, Indie, RPG, Strategy
+[180/192] 🎯 Deus Ex: Mankind Divided™ (AppID: 337000)
+        🏷️  Genres: Action, RPG
+[181/192] 🎯 Sword Coast Legends (AppID: 325600)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[182/192] 🎯 XCOM 2 (AppID: 268500)
+        🏷️  Genres: Strategy
+[183/192] 🎯 Divinity: Original Sin 2 (AppID: 435150)
+        🏷️  Genres: Adventure, RPG, Strategy
+[184/192] 🎯 Tom Clancy's The Division (AppID: 365590)
+        🏷️  Genres: Action, Adventure, RPG
+[185/192] 🎯 Tom Clancy's The Division PTS (AppID: 524440)
+        ℹ️  Kein API-Ergebnis (Spiel evtl. nicht im Store)
+[186/192] 🎯 Far Cry Primal (AppID: 371660)
+        🏷️  Genres: Action, Adventure
+[187/192] 🎯 Faeria (AppID: 397060)
+        🏷️  Genres: Adventure, Indie, Massively Multiplayer, RPG, Strategy
+[188/192] 🎯 Northgard (AppID: 466560)
+        🏷️  Genres: Adventure, Indie, Simulation, Strategy
+[189/192] 🎯 DOOM (AppID: 379720)
+        🏷️  Genres: Action
+[190/192] 🎯 Life is Strange™ (AppID: 319630)
+        🏷️  Genres: Action, Adventure
+[191/192] 🎯 The Witcher 3: Wild Hunt (AppID: 292030)
+        🏷️  Genres: RPG
+[192/192] 🎯 The Elder Scrolls V: Skyrim Special Edition (AppID: 489830)
+        🏷️  Genres: RPG
+
+═══════════════════════════════════════
+✅ Import abgeschlossen!
+   Spiele importiert: 192
+   Fehler:            0
+   Genres gefunden:   9
+   Genre-Liste:       Action, Adventure, Casual, Free To Play, Indie, Massively Multiplayer, RPG, Simulation, Strategy
+═══════════════════════════════════════
+

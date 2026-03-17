@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Games</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <h1 class="logo"><span class="logo-steam">STEAM</span><span class="logo-games">GAMES</span></h1>
+            <div class="search-box">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Spiele durchsuchen...">
+            </div>
+            <div class="header-right">
+                <button class="auth-btn" id="authBtn" title="Anmelden">&#x1F464;</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== HERO CAROUSEL ===== -->
+        <section class="hero-carousel" id="heroCarousel">
+            <div class="hc-track" id="hcTrack"></div>
+            <div class="hc-overlay"></div>
+            <div class="hc-info" id="hcInfo">
+                <p class="hc-kicker">Aktuelle Angebote</p>
+                <h2 class="hc-title" id="hcTitle">Lade…</h2>
+                <div class="hc-badges" id="hcBadges"></div>
+                <button class="hc-cta" id="hcCta">Jetzt ansehen</button>
+            </div>
+            <button class="hc-arrow hc-prev" id="hcPrev">&#8249;</button>
+            <button class="hc-arrow hc-next" id="hcNext">&#8250;</button>
+            <div class="hc-dots" id="hcDots"></div>
+            <div class="hc-progress" id="hcProgress"></div>
+        </section>
+
+        <!-- ===== GENRE FILTER ===== -->
+        <section class="filter-section">
+            <div id="genreFilter" class="genre-filter">
+                <button class="genre-btn active" data-genre="">Alle</button>
+                <button class="genre-btn" data-sale="1">Sales</button>
+            </div>
+        </section>
+
+        <!-- ===== SIZE PICKER ===== -->
+        <div class="size-picker">
+            <span class="size-label">Kachelgröße:</span>
+            <button class="size-btn" data-size="xs" title="Sehr klein">▪▪▪▪▪</button>
+            <button class="size-btn" data-size="s"  title="Klein">▪▪▪▪</button>
+            <button class="size-btn active" data-size="m"  title="Mittel">▪▪▪</button>
+        </div>
+
+        <!-- ===== GAMES GRID ===== -->
+        <section class="games-section">
+            <h2 class="section-title" id="sectionTitle">Alle Spiele</h2>
+            <div id="gamesGrid" class="games-grid size-m">
+                <p class="loading-text">⏳ Lade Spiele...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== MODAL ===== -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <button class="close" id="closeModal">&times;</button>
+
+            <!-- Screenshot Slider -->
+            <div class="modal-slider">
+                <img id="sliderImg" src="" alt="" class="slider-img">
+                <button class="slider-btn slider-prev" id="sliderPrev">&#8249;</button>
+                <button class="slider-btn slider-next" id="sliderNext">&#8250;</button>
+                <div id="sliderDots" class="slider-dots"></div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Titel + Metacritic -->
+                <div class="modal-title-row">
+                    <h2 id="modalTitle" class="modal-title"></h2>
+                    <div id="modalMetacritic" class="metacritic-badge">
+                        <span id="metacriticScore"></span>
+                        <small>MC</small>
+                    </div>
+                </div>
+
+                <!-- Genre Tags + Kategorie Tags -->
+                <div id="modalGenreTags" class="genre-tags"></div>
+                <div id="modalCategoryTags" class="category-tags"></div>
+
+                <!-- Kurzbeschreibung -->
+                <p id="modalDescription" class="modal-description"></p>
+
+                <!-- About the Game (HTML) -->
+                <details class="about-details">
+                    <summary>Über das Spiel</summary>
+                    <div id="modalAbout" class="about-content"></div>
+                </details>
+
+                <!-- Info Grid -->
+                <div class="modal-info-grid">
+                    <div class="info-item"><span class="info-label">Entwickler</span><span id="infoDeveloper" class="info-value"></span></div>
+                    <div class="info-item"><span class="info-label">Publisher</span><span id="infoPublisher" class="info-value"></span></div>
+                    <div class="info-item"><span class="info-label">Erschienen</span><span id="infoRelease" class="info-value"></span></div>
+                    <div class="info-item"><span class="info-label">Typ</span><span id="infoType" class="info-value"></span></div>
+                    <div class="info-item"><span class="info-label">Plattformen</span><span id="infoPlatforms" class="info-value"></span></div>
+                    <div class="info-item"><span class="info-label">Controller</span><span id="infoController" class="info-value"></span></div>
+                    <div class="info-item"><span class="info-label">Empfehlungen</span><span id="infoRecommendations" class="info-value"></span></div>
+                    <div class="info-item"><span class="info-label">Preis</span><span id="infoPrice" class="info-value"></span></div>
+                </div>
+
+                <!-- Sprachen + Website -->
+                <p id="modalLanguages" class="modal-languages"></p>
+                <a id="modalWebsite" class="modal-website" href="#" target="_blank" rel="noopener">Steam Store ↗</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+
+    <!-- ===== AUTH MODAL ===== -->
+    <div id="authModal" class="modal">
+        <div class="modal-content auth-modal-content">
+            <button class="close" id="closeAuthModal">&times;</button>
+            <div class="auth-header">
+                <h2 class="auth-logo"><span class="logo-steam">STEAM</span><span class="logo-games">GAMES</span></h2>
+            </div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Anmelden</button>
+                <button class="auth-tab" data-tab="register">Registrieren</button>
+            </div>
+
+            <!-- Login -->
+            <form id="loginForm" class="auth-form">
+                <input type="text" id="loginUsername" class="auth-input" placeholder="Nutzername" autocomplete="username" required>
+                <input type="password" id="loginPassword" class="auth-input" placeholder="Passwort" autocomplete="current-password" required>
+                <p id="loginError" class="auth-error"></p>
+                <button type="submit" class="auth-submit">Anmelden</button>
+            </form>
+
+            <!-- Register -->
+            <form id="registerForm" class="auth-form" style="display:none">
+                <input type="text" id="regUsername" class="auth-input" placeholder="Nutzername" autocomplete="username" required>
+                <input type="email" id="regEmail" class="auth-input" placeholder="E-Mail" autocomplete="email" required>
+                <input type="password" id="regPassword" class="auth-input" placeholder="Passwort (mind. 6 Zeichen)" autocomplete="new-password" required>
+                <p id="registerError" class="auth-error"></p>
+                <button type="submit" class="auth-submit">Registrieren</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
