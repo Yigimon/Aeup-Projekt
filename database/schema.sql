@@ -50,7 +50,6 @@ CREATE TABLE IF NOT EXISTS users (
 -- =============================================
 -- Tabelle: games
 -- =============================================
--- Quelle: steam-games.json (Basisfelder) + Steam Store API (alle weiteren Felder)
 CREATE TABLE IF NOT EXISTS games (
     -- Primärschlüssel & Identifikation
     id                          INT           AUTO_INCREMENT PRIMARY KEY,
