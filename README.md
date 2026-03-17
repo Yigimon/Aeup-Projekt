@@ -20,7 +20,8 @@ Technologie-Stack: **PHP · MySQL · Vanilla JS · HTML · CSS**
 ```
 Aeup-Projekt/
 │
-├── steam-games.json            ← Quelldatei: 192 Steam-Spiele
+├── data/
+│   └── steam-games.json        ← Quelldatei: 192 Steam-Spiele
 ├── package.json                ← Node.js Abhängigkeiten (mysql2, node-fetch)
 │
 ├── database/

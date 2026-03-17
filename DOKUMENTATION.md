@@ -61,7 +61,8 @@
 ```
 Aeup-Projekt/
 │
-├── steam-games.json            ← Quelldatei: 192 Steam-Spiele (Basisfelder)
+├── data/
+│   └── steam-games.json        ← Quelldatei: 192 Steam-Spiele (Basisfelder)
 ├── package.json                ← Node.js Abhängigkeiten (mysql2, node-fetch)
 ├── Dockerfile                  ← PHP 8.2 Apache Container
 ├── docker-compose.yml          ← MySQL + PHP Container-Setup
