@@ -5,9 +5,10 @@ const SIZES    = ['xs', 's', 'm'];
 // Single Source of Truth für Auth-Zustand
 let _auth = null; // null = nicht angemeldet | { id, username, role }
 
-// DOM-Shortcut (Single Source of Truth für getElementById)
+// DOM-Shortcuts
 const el      = id  => document.getElementById(id);
 const setText = (id, val) => { el(id).textContent = val || '—'; };
+const isAdmin = ()  => _auth?.role === 'admin';
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
@@ -50,15 +51,15 @@ async function loadGenres() {
         const container = el('genreFilter');
         const allBtn  = container.querySelector('[data-genre=""]');
         const saleBtn = container.querySelector('[data-sale="1"]');
-        allBtn.addEventListener('click', e => filterByGenre('', e.currentTarget));
-        saleBtn.addEventListener('click', () => filterBySale(saleBtn));
+        allBtn.addEventListener('click',  e => applyFilter({ genre: '' }, e.currentTarget));
+        saleBtn.addEventListener('click', () => applyFilter({ sale: true }, saleBtn));
 
         genres.forEach(genre => {
             const btn = document.createElement('button');
             btn.className     = 'genre-btn';
             btn.dataset.genre = genre.name;
             btn.textContent   = `${genre.name} (${genre.game_count})`;
-            btn.addEventListener('click', () => filterByGenre(genre.name, btn));
+            btn.addEventListener('click', () => applyFilter({ genre: genre.name }, btn));
             container.appendChild(btn);
         });
     } catch (e) {
@@ -111,53 +112,57 @@ function createGameCard(game) {
     card.className = 'game-card';
     if (!parseInt(game.is_visible)) card.classList.add('game-card--hidden');
 
-    const img        = document.createElement('img');
-    img.className    = 'game-image';
-    img.src          = imgUrl;
-    img.alt          = game.name;
-    img.loading      = 'lazy';
-    img.onerror      = () => { img.src = `https://via.placeholder.com/460x215/313244/cdd6f4?text=${encodeURIComponent(game.name)}`; };
-
+    const img     = document.createElement('img');
+    img.className = 'game-image';
+    img.src       = imgUrl;
+    img.alt       = game.name;
+    img.loading   = 'lazy';
+    img.onerror   = () => {
+        img.src = `https://via.placeholder.com/460x215/313244/cdd6f4?text=${encodeURIComponent(game.name)}`;
+    };
     card.append(img);
 
-    // Admin-Controls (nur für Admins sichtbar)
-    if (_auth?.role === 'admin') {
-        const controls = document.createElement('div');
-        controls.className = 'admin-controls';
-
-        const eyeBtn = document.createElement('button');
-        eyeBtn.className = 'admin-btn admin-btn-eye';
-        eyeBtn.title     = parseInt(game.is_visible) ? 'Ausblenden' : 'Einblenden';
-        eyeBtn.textContent = parseInt(game.is_visible) ? '👁️' : '🙈';
-        eyeBtn.addEventListener('click', e => { e.stopPropagation(); adminToggleVisible(game, card, eyeBtn); });
-
-        const delBtn = document.createElement('button');
-        delBtn.className   = 'admin-btn admin-btn-delete';
-        delBtn.title       = 'Löschen';
-        delBtn.textContent = '🗑️';
-        delBtn.addEventListener('click', e => { e.stopPropagation(); adminDeleteGame(game, card); });
-
-        controls.append(eyeBtn, delBtn);
-        card.appendChild(controls);
-    }
-
+    if (isAdmin()) card.appendChild(createAdminControls(game, card));
     card.addEventListener('click', () => openModal(game));
     return card;
 }
 
-// ── Filter & Search ───────────────────────────────────────────────────────────
-function filterByGenre(genre, clickedBtn) {
-    document.querySelectorAll('.genre-btn').forEach(b => b.classList.remove('active'));
-    clickedBtn.classList.add('active');
-    el('searchInput').value = '';
-    loadGames({ genre });
+function createAdminControls(game, card) {
+    const controls = document.createElement('div');
+    controls.className = 'admin-controls';
+
+    const eyeBtn = document.createElement('button');
+    eyeBtn.className = 'admin-btn admin-btn-eye';
+    updateEyeBtn(eyeBtn, parseInt(game.is_visible));
+    eyeBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        adminToggleVisible(game, card, eyeBtn);
+    });
+
+    const delBtn = document.createElement('button');
+    delBtn.className   = 'admin-btn admin-btn-delete';
+    delBtn.title       = 'Löschen';
+    delBtn.textContent = '🗑️';
+    delBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        adminDeleteGame(game, card);
+    });
+
+    controls.append(eyeBtn, delBtn);
+    return controls;
 }
 
-function filterBySale(clickedBtn) {
+function updateEyeBtn(btn, visible) {
+    btn.title       = visible ? 'Ausblenden' : 'Einblenden';
+    btn.textContent = visible ? '👁️' : '🙈';
+}
+
+// ── Filter & Search ───────────────────────────────────────────────────────────
+function applyFilter(params, clickedBtn) {
     document.querySelectorAll('.genre-btn').forEach(b => b.classList.remove('active'));
     clickedBtn.classList.add('active');
     el('searchInput').value = '';
-    loadGames({ sale: true });
+    loadGames(params);
 }
 
 function initSearch() {
@@ -198,80 +203,63 @@ function renderAuthBtn() {
 }
 
 function initAuthModal() {
-    // Auth-Button: wenn eingeloggt → Abmelden, sonst Modal öffnen
-    el('authBtn').addEventListener('click', () => {
-        if (_auth) { authLogout(); } else { openAuthModal('login'); }
-    });
-
+    el('authBtn').addEventListener('click', () => _auth ? authLogout() : openAuthModal('login'));
     el('closeAuthModal').addEventListener('click', closeAuthModal);
-    el('authModal').addEventListener('click', e => {
-        if (e.target === el('authModal')) closeAuthModal();
-    });
+    el('authModal').addEventListener('click', e => { if (e.target === el('authModal')) closeAuthModal(); });
 
-    // Tab-Wechsel
     document.querySelectorAll('.auth-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            const isLogin = tab.dataset.tab === 'login';
-            el('loginForm').style.display    = isLogin ? '' : 'none';
-            el('registerForm').style.display = isLogin ? 'none' : '';
-            el('loginError').textContent     = '';
-            el('registerError').textContent  = '';
-        });
+        tab.addEventListener('click', () => switchAuthTab(tab.dataset.tab));
     });
 
-    // Login
     el('loginForm').addEventListener('submit', async e => {
         e.preventDefault();
-        el('loginError').textContent = '';
-        const body = new URLSearchParams({
+        await submitAuth('login', {
             action:   'login',
             username: el('loginUsername').value.trim(),
             password: el('loginPassword').value,
-        });
-        try {
-            const { success, user, error } = await fetch(API_BASE + 'auth.php', { method: 'POST', body }).then(r => r.json());
-            if (!success) { el('loginError').textContent = error; return; }
-            _auth = user;
-            renderAuthBtn();
-            closeAuthModal();
-            loadGames();    // Grid neu laden (jetzt ggf. mit Admin-Controls)
-        } catch { el('loginError').textContent = 'Verbindungsfehler'; }
+        }, 'loginError');
     });
 
-    // Register
     el('registerForm').addEventListener('submit', async e => {
         e.preventDefault();
-        el('registerError').textContent = '';
-        const body = new URLSearchParams({
+        await submitAuth('register', {
             action:   'register',
             username: el('regUsername').value.trim(),
             email:    el('regEmail').value.trim(),
             password: el('regPassword').value,
-        });
-        try {
-            const { success, user, error } = await fetch(API_BASE + 'auth.php', { method: 'POST', body }).then(r => r.json());
-            if (!success) { el('registerError').textContent = error; return; }
-            _auth = user;
-            renderAuthBtn();
-            closeAuthModal();
-            loadGames();
-        } catch { el('registerError').textContent = 'Verbindungsfehler'; }
+        }, 'registerError');
     });
 }
 
-function openAuthModal(tab = 'login') {
-    // Richtigen Tab aktivieren
-    document.querySelectorAll('.auth-tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.tab === tab);
-    });
+async function submitAuth(action, fields, errorId) {
+    el(errorId).textContent = '';
+    try {
+        const { success, user, error } = await fetch(
+            API_BASE + 'auth.php',
+            { method: 'POST', body: new URLSearchParams(fields) }
+        ).then(r => r.json());
+        if (!success) { el(errorId).textContent = error; return; }
+        _auth = user;
+        renderAuthBtn();
+        closeAuthModal();
+        loadGames();
+    } catch { el(errorId).textContent = 'Verbindungsfehler'; }
+}
+
+function switchAuthTab(tab) {
+    document.querySelectorAll('.auth-tab').forEach(t =>
+        t.classList.toggle('active', t.dataset.tab === tab)
+    );
     el('loginForm').style.display    = tab === 'login' ? '' : 'none';
     el('registerForm').style.display = tab === 'login' ? 'none' : '';
     el('loginError').textContent     = '';
     el('registerError').textContent  = '';
-    el('authModal').style.display    = 'block';
-    document.body.style.overflow     = 'hidden';
+}
+
+function openAuthModal(tab = 'login') {
+    switchAuthTab(tab);
+    el('authModal').style.display = 'block';
+    document.body.style.overflow  = 'hidden';
 }
 
 function closeAuthModal() {
@@ -280,10 +268,13 @@ function closeAuthModal() {
 }
 
 async function authLogout() {
-    await fetch(API_BASE + 'auth.php', { method: 'POST', body: new URLSearchParams({ action: 'logout' }) });
+    await fetch(API_BASE + 'auth.php', {
+        method: 'POST',
+        body: new URLSearchParams({ action: 'logout' }),
+    });
     _auth = null;
     renderAuthBtn();
-    loadGames();    // Grid ohne Admin-Controls neu laden
+    loadGames();
 }
 
 // ── Admin CRUD ────────────────────────────────────────────────────────────────
@@ -295,8 +286,7 @@ async function adminToggleVisible(game, card, eyeBtn) {
         if (!success) return;
         game.is_visible = is_visible;
         card.classList.toggle('game-card--hidden', !is_visible);
-        eyeBtn.title       = is_visible ? 'Ausblenden' : 'Einblenden';
-        eyeBtn.textContent = is_visible ? '👁️' : '🙈';
+        updateEyeBtn(eyeBtn, is_visible);
     } catch {}
 }
 
@@ -312,45 +302,44 @@ async function adminDeleteGame(game, card) {
 // ── Hero Carousel ─────────────────────────────────────────────────────────────
 let _hcGames = [], _hcIndex = 0, _hcTimer = null, _hcCurrentGame = null;
 
+function resetCarouselTimer() {
+    if (_hcTimer) clearInterval(_hcTimer);
+    _hcTimer = setInterval(() => carouselStep(1), 5000);
+}
+
 async function loadHeroSales() {
     try {
         const { success, games } = await fetch(API_BASE + 'get_games.php?sale=1').then(r => r.json());
-        if (!success || !games.length) {
-            el('hcTitle').textContent = 'Keine Angebote';
-            return;
-        }
+        if (!success || !games.length) { el('hcTitle').textContent = 'Keine Angebote'; return; }
+
         _hcGames = games;
+        renderCarouselSlide(0);
+        buildCarouselDots();
 
-            renderCarouselSlide(0);
-            buildCarouselDots();
-            // Autoplay alle 5 Sekunden
-
-            const section = el('heroCarousel');
-            el('hcPrev').addEventListener('click', e => { e.stopPropagation(); carouselStep(-1, true); resetCarouselTimer(); });
-            el('hcNext').addEventListener('click', e => { e.stopPropagation(); carouselStep( 1, true); resetCarouselTimer(); });
-            el('hcCta').addEventListener('click', () => { if (_hcCurrentGame) openModal(_hcCurrentGame); });
-            section.addEventListener('click', () => { if (_hcCurrentGame) openModal(_hcCurrentGame); });
-
-            function resetCarouselTimer() {
-                if (_hcTimer) clearInterval(_hcTimer);
-                _hcTimer = setInterval(() => carouselStep(1), 5000);
-            }
-            resetCarouselTimer();
-    } catch (e) {
+        const section = el('heroCarousel');
+        el('hcPrev').addEventListener('click', e => { e.stopPropagation(); carouselStep(-1); resetCarouselTimer(); });
+        el('hcNext').addEventListener('click', e => { e.stopPropagation(); carouselStep(1);  resetCarouselTimer(); });
+        el('hcCta').addEventListener('click',  () => { if (_hcCurrentGame) openModal(_hcCurrentGame); });
+        section.addEventListener('click',      () => { if (_hcCurrentGame) openModal(_hcCurrentGame); });
+        resetCarouselTimer();
+    } catch {
         el('hcTitle').textContent = 'PHP-Server nicht erreichbar';
     }
 }
 
-function renderCarouselSlide(index) {
-    _hcIndex = (index + _hcGames.length) % _hcGames.length;
-    _hcCurrentGame = _hcGames[_hcIndex];
-    const game   = _hcCurrentGame;
-    let bgImg = game.header_image;
+function getGameBg(game) {
     try {
         const shots = JSON.parse(game.screenshots || '[]');
-        if (shots.length) bgImg = shots[0];
+        if (shots.length) return shots[0];
     } catch {}
-    bgImg = bgImg || game.background || buildLogoUrl(game.appid, game.img_logo_url);
+    return game.header_image || game.background || buildLogoUrl(game.appid, game.img_logo_url);
+}
+
+function renderCarouselSlide(index) {
+    _hcIndex       = (index + _hcGames.length) % _hcGames.length;
+    _hcCurrentGame = _hcGames[_hcIndex];
+    const game     = _hcCurrentGame;
+    const bgImg    = getGameBg(game);
 
     // Background
     const track = el('hcTrack');
@@ -387,20 +376,16 @@ function renderCarouselSlide(index) {
     );
 
     // Nächstes Bild vorladen
-    const next = _hcGames[(_hcIndex + 1 + _hcGames.length) % _hcGames.length];
-    if (next) {
-        let nextBg = next.header_image;
-        try { const s = JSON.parse(next.screenshots || '[]'); if (s.length) nextBg = s[0]; } catch {}
-        nextBg = nextBg || next.background || buildLogoUrl(next.appid, next.img_logo_url);
-        if (nextBg) { const img = new Image(); img.src = nextBg; }
-    }
+    const next   = _hcGames[(_hcIndex + 1) % _hcGames.length];
+    const nextBg = next && getGameBg(next);
+    if (nextBg) { const img = new Image(); img.src = nextBg; }
 
-        // Progress bar animieren
-        const bar = el('hcProgress');
-        bar.classList.remove('running');
-        bar.style.width = '0%';
-        void bar.offsetWidth;
-        bar.classList.add('running');
+    // Progress bar neu starten
+    const bar = el('hcProgress');
+    bar.classList.remove('running');
+    bar.style.width = '0%';
+    void bar.offsetWidth;
+    bar.classList.add('running');
 }
 
 function buildCarouselDots() {
@@ -414,19 +399,8 @@ function buildCarouselDots() {
     });
 }
 
-function carouselStep(dir) {
-    renderCarouselSlide(_hcIndex + dir);
-}
-
-// dir: Richtung, reset: true wenn manuell (Pfeil)
-function carouselStep(dir, reset) {
-    renderCarouselSlide(_hcIndex + dir);
-}
-
-// i: Index, reset: true wenn manuell (Dot)
-function carouselGoTo(i, reset) {
-    renderCarouselSlide(i);
-}
+function carouselStep(dir)  { renderCarouselSlide(_hcIndex + dir); }
+function carouselGoTo(i)    { renderCarouselSlide(i); }
 
 
 // ── Modal + Slider ────────────────────────────────────────────────────────────
@@ -575,9 +549,7 @@ function formatPrice(game) {
 }
 
 function buildLogoUrl(appid, hash) {
-    return hash ? `https://media.steampowered.com/steamcommunity/public/images/apps/${appid}/${hash}.jpg` : '';
-}
-
-function escapeHtml(str) {
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    return hash
+        ? `https://media.steampowered.com/steamcommunity/public/images/apps/${appid}/${hash}.jpg`
+        : '';
 }

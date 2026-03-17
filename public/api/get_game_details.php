@@ -38,7 +38,9 @@ if (!$game) {
     exit;
 }
 
-$game['genres'] = $game['genres'] ? explode(',', $game['genres']) : [];
+$game['genres']     = $game['genres']     ? explode(',', $game['genres'])          : [];
+$game['categories'] = $game['categories'] ? json_decode($game['categories'], true) : [];
+$game['screenshots']= $game['screenshots']? json_decode($game['screenshots'], true) : [];
 
 echo json_encode([
     'success' => true,

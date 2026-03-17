@@ -251,17 +251,17 @@ body {
     transition: background 0.2s, transform 0.2s;
 }
 .hc-dot.active { background: #cba6f7; transform: scale(1.3); }
+
 /* Progress bar */
 .hc-progress {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 0; left: 0;
     height: 3px;
     width: 0%;
     background: #cba6f7;
     z-index: 4;
     transition: none;
-} */
+}
 .hc-progress.running {
     transition: width 7s linear;
     width: 100%;
@@ -413,7 +413,6 @@ body {
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     aspect-ratio: 16/9;
-    
 }
 
 .game-card:hover {
@@ -431,11 +430,8 @@ body {
 }
 
 .game-overlay {
-    /* Overlay entfernt: kein Hintergrund, keine Transparenz */
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     background: none;
     padding: 0;
     opacity: 1;
@@ -475,7 +471,6 @@ body {
     position: relative;
     animation: modalIn 0.25s ease;
     overflow: hidden;
-    
 }
 
 @keyframes modalIn {
@@ -592,7 +587,6 @@ body {
 .genre-tag     { background: #cba6f7; color: #1e1e2e; border-radius: 4px; padding: 3px 10px; font-size: 12px; font-weight: 700; }
 .category-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 .category-tag  { background: transparent; color: #89b4fa; border-radius: 4px; padding: 2px 9px; font-size: 11px; border: 1px solid #89b4fa; }
-
 .modal-description { font-size: 14px; line-height: 1.7; color: #a6adc8; margin-bottom: 14px; }
 
 /* About the Game (klappbar) */

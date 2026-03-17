@@ -49,8 +49,7 @@ if ($sale) {
     $where[] = 'g.price_discount > 0';
 }
 
-
-// Sichtbarkeit: Nur sichtbare Spiele für normale Nutzer
+// Nur sichtbare Spiele für normale Nutzer
 if (!$isAdmin) {
     $where[] = 'g.is_visible = 1';
 }
@@ -70,6 +69,7 @@ $games = $stmt->fetchAll();
 foreach ($games as &$game) {
     $game['genres']     = $game['genres']     ? explode(',', $game['genres'])          : [];
     $game['categories'] = $game['categories'] ? json_decode($game['categories'], true) : [];
+    $game['screenshots']= $game['screenshots'] ? json_decode($game['screenshots'], true): [];
 }
 
 echo json_encode([
