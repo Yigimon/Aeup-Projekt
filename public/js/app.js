@@ -336,10 +336,8 @@ async function loadHeroSales() {
 }
 
 function getGameBg(game) {
-    try {
-        const shots = JSON.parse(game.screenshots || '[]');
-        if (shots.length) return shots[0];
-    } catch {}
+    const shots = Array.isArray(game.screenshots) ? game.screenshots : [];
+    if (shots.length) return shots[0];
     return game.header_image || game.background || buildLogoUrl(game.appid, game.img_logo_url);
 }
 
@@ -455,10 +453,9 @@ function updateSlider() {
 
 function openModal(game) {
     // Slider-Bilder aufbauen
-    try {
-        const shots = JSON.parse(game.screenshots || '[]');
-        sliderImages = [game.header_image, ...shots.filter(u => u && u !== game.header_image)].filter(Boolean);
-    } catch { sliderImages = []; }
+    // screenshots kommt bereits als Array vom Server (PHP dekodiert es via json_decode)
+    const shots = Array.isArray(game.screenshots) ? game.screenshots : [];
+    sliderImages = [game.header_image, ...shots.filter(u => u && u !== game.header_image)].filter(Boolean);
     if (!sliderImages.length) sliderImages = [buildLogoUrl(game.appid, game.img_logo_url)];
     sliderIndex = 0;
     updateSlider();
