@@ -1,13 +1,16 @@
 # Abhängigkeiten
 node_modules/
 
-# # Umgebungsvariablen / Datenbank-Config
-# .env
-# config/database.php
+# Logs
+*.log
 
-# # Betriebssystem
-# .DS_Store
-# Thumbs.db
+# Umgebungsvariablen / Datenbank-Config
+.env
+config/database.php
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
 
 # IDE
 .vscode/settings.json

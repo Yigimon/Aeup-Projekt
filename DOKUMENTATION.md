@@ -63,16 +63,16 @@ Aeup-Projekt/
 │
 ├── steam-games.json            ← Quelldatei: 192 Steam-Spiele (Basisfelder)
 ├── package.json                ← Node.js Abhängigkeiten (mysql2, node-fetch)
-├── import.log                  ← Ausgabe des letzten import.js Laufs
-├── expand.log                  ← Ausgabe des letzten expand-import.js Laufs
+├── Dockerfile                  ← PHP 8.2 Apache Container
+├── docker-compose.yml          ← MySQL + PHP Container-Setup
+├── README.md                   ← Projektübersicht (GitHub)
 │
 ├── database/
 │   ├── schema.sql              ← Datenbankstruktur (Tabellen, Indizes, View)
-│   ├── import.js               ← Importiert 192 Spiele aus steam-games.json
-│   ├── expand-import.js        ← Füllt die DB bis auf 500 Spiele (via SteamSpy)
-│   └── README.md               ← Datenbank-Teildo kumentation
+│   ├── expand-import.js        ← Importiert & erweitert DB auf 500 Spiele (via Steam + SteamSpy)
+│   └── README.md               ← Datenbank-Dokumentation
 │
-└── public/                     ← PHP-Server Root (localhost:8888)
+└── public/                     ← PHP-Server Root (localhost:8080)
     ├── index.html              ← Einzige HTML-Seite (Single Page)
     ├── css/
     │   └── style.css           ← Gesamtes Styling (Catppuccin Mocha)
@@ -303,81 +303,28 @@ Die Genres werden via `GROUP_CONCAT(gen.name ORDER BY gen.name SEPARATOR ', ')` 
 
 ## 5. Import-Skripte
 
-### 5.1 `import.js`
+### 5.1 `expand-import.js`
 
-**Zweck:** Importiert die 192 Spiele aus `steam-games.json` in die Datenbank und reichert sie mit Steam-API-Daten an.
-
-**Ausführung:**
-```powershell
-cd C:\Users\yigithan.zeybel\Aeup-Projekt
-node database/import.js
-```
-
-**Ablauf Schritt für Schritt:**
-
-```
-1. steam-games.json lesen
-        ↓
-2. MySQL-Verbindung herstellen
-        ↓
-3. Für jedes Spiel (192 Stück):
-   a) Spiel in DB einfügen (INSERT ... ON DUPLICATE KEY UPDATE)
-      → Basisfelder: appid, name, playtime_forever, img_icon_url, img_logo_url
-   
-   b) Steam Store API aufrufen:
-      GET https://store.steampowered.com/api/appdetails?appids={appid}&l=de
-   
-   c) API-Daten speichern (UPDATE games SET ...):
-      → Beschreibungen, Bilder, Preise, Plattformen, Kategorien, Screenshots...
-   
-   d) Genres verarbeiten:
-      → getOrCreateGenre(): Genre in genres-Tabelle anlegen falls nicht vorhanden
-      → linkGameGenre():    Eintrag in game_genres (m:n) anlegen
-   
-   e) 400ms warten (Rate Limiting)
-        ↓
-4. Zusammenfassung ausgeben
-```
-
-**Wichtige Funktionen:**
-
-| Funktion | Parameter | Rückgabe | Beschreibung |
-|---|---|---|---|
-| `fetchSteamDetails(appid)` | appid: number | `object \| null` | Holt Spieldetails von der Steam Store API |
-| `getOrCreateGenre(conn, name)` | DB-Verbindung, Genre-Name | `genreId: number` | Legt Genre an falls nicht vorhanden, gibt immer die ID zurück |
-| `linkGameGenre(conn, gameId, genreId)` | DB-Verbindung, IDs | void | Erstellt m:n-Verknüpfung (INSERT IGNORE – keine Duplikate) |
-| `importGames()` | – | void | Haupt-Funktion, steuert den gesamten Import |
-| `sleep(ms)` | Millisekunden | Promise | Wartet die angegebene Zeit (Rate Limiting) |
-
-**Konfiguration:**
-```javascript
-const API_DELAY = 400; // ms zwischen Steam-API Anfragen
-```
-
----
-
-### 5.2 `expand-import.js`
-
-**Zweck:** Füllt die Datenbank mit weiteren populären Steam-Spielen bis zum Ziel von 500 Spielen. Nutzt **SteamSpy** als Quelle für AppIDs.
+**Zweck:** Importiert die 192 Spiele aus `steam-games.json` und füllt die Datenbank mit weiteren populären Steam-Spielen bis zum Ziel von 500 Spielen. Nutzt **SteamSpy** als Quelle für weitere AppIDs.
 
 **Ausführung:**
 ```powershell
 node database/expand-import.js
-# Oder im Hintergrund mit Log:
-Start-Process "node" -ArgumentList "database/expand-import.js" -WorkingDirectory "C:\Users\yigithan.zeybel\Aeup-Projekt" -RedirectStandardOutput "expand.log" -WindowStyle Hidden
 ```
 
 **Ablauf:**
 
 ```
-1. Aktuelle Spielanzahl in DB prüfen
+1. steam-games.json lesen → Basisspiele importieren
         ↓
-2. Falls bereits ≥ 500: Abbruch
+2. Aktuelle Spielanzahl in DB prüfen
         ↓
-3. SteamSpy-Endpunkte abfragen (top100forever, top100in2weeks,
+3. Falls bereits ≥ 500: Abbruch
+        ↓
+4. SteamSpy-Endpunkte abfragen (top100forever, top100in2weeks,
    top100owned + 10 Genre-Listen) → bis zu ~3000 AppIDs sammeln
         ↓
-4. Bereits in DB vorhandene AppIDs herausfiltern
+5. Bereits in DB vorhandene AppIDs herausfiltern
         ↓
 5. Für jede neue AppID bis Ziel erreicht:
    a) Steam Store API abfragen
@@ -409,10 +356,7 @@ const STEAMSPY_DELAY  = 1500; // ms zwischen SteamSpy-Anfragen
 
 ## 6. Backend (PHP-API)
 
-Der PHP-Einzel-Server wird so gestartet:
-```powershell
-Start-Process "C:\xampp\php\php.exe" -ArgumentList "-S", "localhost:8888", "-t", "C:\Users\yigithan.zeybel\Aeup-Projekt\public" -WindowStyle Hidden
-```
+Der PHP-Server (oder Docker) wird unter **`http://localhost:8080`** betrieben.
 
 Alle API-Endpunkte liefern **JSON** mit `Content-Type: application/json; charset=utf-8`.
 
@@ -441,7 +385,7 @@ define('DB_NAME', 'steam_games_db');
 
 ### 6.2 `get_games.php`
 
-**URL:** `http://localhost:8888/api/get_games.php`
+**URL:** `http://localhost:8080/api/get_games.php`
 
 **Parameter (optional, per GET):**
 
@@ -494,7 +438,7 @@ GROUP_CONCAT(gen.name ORDER BY gen.name SEPARATOR ',') AS genres
 
 ### 6.3 `get_genres.php`
 
-**URL:** `http://localhost:8888/api/get_genres.php`
+**URL:** `http://localhost:8080/api/get_genres.php`
 
 **Parameter:** keine
 
