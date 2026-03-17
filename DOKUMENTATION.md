@@ -68,6 +68,10 @@
 ```
 Aeup-Projekt/
 │
+├── config/
+│   ├── database.php            ← Lokale DB-Konfiguration (in .gitignore, NICHT committet)
+│   └── database.example.php   ← Vorlage – kopieren und anpassen
+│
 ├── data/
 │   └── steam-games.json        ← Quelldatei: 192 Steam-Spiele (Basisfelder)
 ├── package.json                ← Node.js Abhängigkeiten (mysql2, node-fetch)
@@ -87,10 +91,12 @@ Aeup-Projekt/
     ├── js/
     │   └── app.js              ← Gesamte Frontend-Logik
     └── api/
-        ├── db.php              ← PDO-Datenbankverbindung (Singleton)
+        ├── db.php              ← PDO-Datenbankverbindung (lädt config/database.php)
         ├── get_games.php       ← Spiele-Endpunkt (GET, Filter + Suche)
         ├── get_genres.php      ← Genres-Endpunkt (GET)
-        └── get_game_details.php← Einzelspiel-Endpunkt (GET)
+        ├── get_game_details.php← Einzelspiel-Endpunkt (GET)
+        ├── auth.php            ← Authentifizierung (Login/Register/Logout)
+        └── admin_games.php     ← Admin-Endpunkt (toggle_visible, delete)
 ```
 
 ---
@@ -411,12 +417,21 @@ require_once 'db.php';
 $pdo = getDB(); // Gibt immer dieselbe PDO-Instanz zurück
 ```
 
-**Konfiguration (in der Datei):**
+**Konfiguration:** Die DB-Konstanten werden aus `config/database.php` geladen (nicht in Git). Vorlage: `config/database.example.php`.
+
 ```php
-define('DB_HOST', 'localhost');
+// config/database.php
+define('DB_HOST', 'mysql');       // Docker: 'mysql' | XAMPP: 'localhost'
 define('DB_USER', 'root');
-define('DB_PASS', '');            // Kein Passwort (XAMPP-Standard)
+define('DB_PASS', '');            // Leer bei XAMPP und Docker
 define('DB_NAME', 'steam_games_db');
+```
+
+**Ersteinrichtung:**
+```bash
+# Datei aus Vorlage anlegen
+cp config/database.example.php config/database.php
+# Dann Werte in config/database.php anpassen
 ```
 
 ---
@@ -952,13 +967,13 @@ Dann im Browser: **http://localhost:8080**
 
 | Datei | Konstante / Variable | Wert | Beschreibung |
 |---|---|---|---|
+| `config/database.php` | `DB_HOST` | `mysql` / `localhost` | MySQL-Hostadresse (Docker: `mysql`, XAMPP: `localhost`) |
+| `config/database.php` | `DB_USER` | `root` | MySQL-Benutzername |
+| `config/database.php` | `DB_PASS` | `""` | MySQL-Passwort (leer = Standard) |
+| `config/database.php` | `DB_NAME` | `steam_games_db` | Datenbankname |
 | `expand-import.js` | `TARGET` | `500` | Ziel-Spielanzahl |
 | `expand-import.js` | `API_DELAY` | `400` ms | Pause zwischen Steam-API Anfragen |
 | `expand-import.js` | `STEAMSPY_DELAY` | `1500` ms | Pause zwischen SteamSpy-Anfragen |
-| `db.php` | `DB_HOST` | `localhost` | MySQL-Hostadresse |
-| `db.php` | `DB_USER` | `root` | MySQL-Benutzername |
-| `db.php` | `DB_PASS` | `""` | MySQL-Passwort (leer = XAMPP-Standard / Docker) |
-| `db.php` | `DB_NAME` | `steam_games_db` | Datenbankname |
 | `app.js` | `API_BASE` | `'api/'` | Basis-Pfad für alle API-Anfragen |
 | `app.js` | `SIZES` | `['xs','s','m']` | Verfügbare Kachelgrößen |
 | PHP-Server | Port | `8888` | Webserver-Port |

@@ -23,6 +23,10 @@ Technologie-Stack: **PHP · MySQL · Vanilla JS · HTML · CSS**
 ```
 Aeup-Projekt/
 │
+├── config/
+│   ├── database.php            ← Lokale DB-Konfiguration (in .gitignore, NICHT committet)
+│   └── database.example.php   ← Vorlage – kopieren und anpassen
+│
 ├── data/
 │   └── steam-games.json        ← Quelldatei: 192 Steam-Spiele
 ├── package.json                ← Node.js Abhängigkeiten (mysql2, node-fetch)
@@ -33,18 +37,18 @@ Aeup-Projekt/
 │   └── README.md               ← Datenbank-Dokumentation
 │
 ├── public/                     ← PHP-Server Root (localhost:8080)
-    ├── index.html              ← Single Page Application
-    ├── css/
-    │   └── style.css           ← Gesamtes Styling (Catppuccin Mocha)
-    ├── js/
-    │   └── app.js              ← Gesamte Frontend-Logik
-    └── api/
-        ├── db.php              ← PDO-Datenbankverbindung (Singleton)
-        ├── get_games.php       ← Spiele-Endpunkt (GET, Filter + Suche)
-        ├── get_genres.php      ← Genres-Endpunkt (GET)
-        ├── get_game_details.php← Einzelspiel-Endpunkt (GET)
-        ├── auth.php            ← Authentifizierung (Login/Register/Logout)
-        └── admin_games.php     ← Admin-Endpunkt (toggle_visible, delete)
+│   ├── index.html              ← Single Page Application
+│   ├── css/
+│   │   └── style.css           ← Gesamtes Styling (Catppuccin Mocha)
+│   ├── js/
+│   │   └── app.js              ← Gesamte Frontend-Logik
+│   └── api/
+│       ├── db.php              ← PDO-Datenbankverbindung (lädt config/database.php)
+│       ├── get_games.php       ← Spiele-Endpunkt (GET, Filter + Suche)
+│       ├── get_genres.php      ← Genres-Endpunkt (GET)
+│       ├── get_game_details.php← Einzelspiel-Endpunkt (GET)
+│       ├── auth.php            ← Authentifizierung (Login/Register/Logout)
+│       └── admin_games.php     ← Admin-Endpunkt (toggle_visible, delete)
 │
 ├── Dockerfile                  ← PHP 8.2 Apache Container
 ├── docker-compose.yml          ← MySQL + PHP Container-Setup

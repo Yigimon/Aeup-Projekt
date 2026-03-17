@@ -1,9 +1,8 @@
 <?php
 // db.php – Singleton-Datenbankverbindung (PDO)
-define('DB_HOST', 'mysql');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'steam_games_db');
+// Konfiguration wird aus config/database.php geladen (nicht in Git).
+// Vorlage: config/database.example.php
+require_once __DIR__ . '/../../config/database.php';
 
 function getDB(): PDO {
     static $pdo = null;
