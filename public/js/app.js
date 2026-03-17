@@ -458,6 +458,10 @@ function openModal(game) {
     sliderImages = [game.header_image, ...shots.filter(u => u && u !== game.header_image)].filter(Boolean);
     if (!sliderImages.length) sliderImages = [buildLogoUrl(game.appid, game.img_logo_url)];
     sliderIndex = 0;
+
+    // Alle Slider-Bilder vorab im Browser-Cache laden → kein Lag beim Wechseln
+    sliderImages.forEach(src => { const img = new Image(); img.src = src; });
+
     updateSlider();
 
     // Titel
