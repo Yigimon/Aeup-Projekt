@@ -17,8 +17,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     initModal();
     initSizePicker();
     initSearch();
-    await initAuth();   // Auth-Zustand laden, bevor Spiele gerendert werden
-    loadHeroSales();
+    initHeroCarousel();   // Event-Listener einmalig registrieren
+    await initAuth();     // Auth-Zustand laden, bevor Spiele gerendert werden
+    loadHeroSales();      // Daten laden & Carousel befüllen
     loadGenres();
     loadGames();
 });
@@ -312,20 +313,22 @@ function resetCarouselTimer() {
     _hcTimer = setInterval(() => carouselStep(1), 5000);
 }
 
+// Event-Listener des Carousels einmalig beim Laden registrieren (SRP: nur Init)
+function initHeroCarousel() {
+    el('hcPrev').addEventListener('click', e => { e.stopPropagation(); carouselStep(-1); resetCarouselTimer(); });
+    el('hcNext').addEventListener('click', e => { e.stopPropagation(); carouselStep(1);  resetCarouselTimer(); });
+    el('hcCta').addEventListener('click',  () => { if (_hcCurrentGame) openModal(_hcCurrentGame); });
+    el('heroCarousel').addEventListener('click', () => { if (_hcCurrentGame) openModal(_hcCurrentGame); });
+}
+
+// Nur Daten laden und Carousel befüllen (SRP: nur Datenladen + Render)
 async function loadHeroSales() {
     try {
         const { success, games } = await fetch(API_BASE + 'get_games.php?sale=1').then(r => r.json());
         if (!success || !games.length) { el('hcTitle').textContent = 'Keine Angebote'; return; }
-
         _hcGames = games;
         renderCarouselSlide(0);
         buildCarouselDots();
-
-        const section = el('heroCarousel');
-        el('hcPrev').addEventListener('click', e => { e.stopPropagation(); carouselStep(-1); resetCarouselTimer(); });
-        el('hcNext').addEventListener('click', e => { e.stopPropagation(); carouselStep(1);  resetCarouselTimer(); });
-        el('hcCta').addEventListener('click',  () => { if (_hcCurrentGame) openModal(_hcCurrentGame); });
-        section.addEventListener('click',      () => { if (_hcCurrentGame) openModal(_hcCurrentGame); });
         resetCarouselTimer();
     } catch {
         el('hcTitle').textContent = 'PHP-Server nicht erreichbar';
@@ -350,15 +353,23 @@ function renderCarouselSlide(index) {
     const track = el('hcTrack');
     track.style.backgroundImage = bgImg ? `url("${bgImg}")` : 'none';
     track.style.animation = 'none';
-    // Force reflow to restart animation
-    void track.offsetWidth;
+    void track.offsetWidth; // Force reflow to restart animation
     track.style.animation = '';
 
-    // Title
     el('hcTitle').textContent = game.name;
+    renderCarouselBadges(game);
 
-    // Badges
-    const badges = el('hcBadges');
+    document.querySelectorAll('.hc-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === _hcIndex)
+    );
+
+    preloadNextSlide();
+    restartProgressBar();
+}
+
+// Rabatt- und Preis-Badges im Carousel rendern
+function renderCarouselBadges(game) {
+    const badges   = el('hcBadges');
     badges.innerHTML = '';
     const discount = parseInt(game.price_discount) || 0;
     if (discount > 0) {
@@ -374,22 +385,21 @@ function renderCarouselSlide(index) {
         p.textContent = priceStr;
         badges.appendChild(p);
     }
+}
 
-    // Dots
-    document.querySelectorAll('.hc-dot').forEach((d, i) =>
-        d.classList.toggle('active', i === _hcIndex)
-    );
-
-    // Nächstes Bild vorladen
+// Nächstes Carousel-Bild vorladen
+function preloadNextSlide() {
     const next   = _hcGames[(_hcIndex + 1) % _hcGames.length];
     const nextBg = next && getGameBg(next);
     if (nextBg) { const img = new Image(); img.src = nextBg; }
+}
 
-    // Progress bar neu starten
+// Fortschrittsbalken-Animation neu starten
+function restartProgressBar() {
     const bar = el('hcProgress');
     bar.classList.remove('running');
     bar.style.width = '0%';
-    void bar.offsetWidth;
+    void bar.offsetWidth; // Force reflow
     bar.classList.add('running');
 }
 
@@ -404,8 +414,8 @@ function buildCarouselDots() {
     });
 }
 
-function carouselStep(dir)  { renderCarouselSlide(_hcIndex + dir); }
-function carouselGoTo(i)    { renderCarouselSlide(i); }
+function carouselStep(dir)             { renderCarouselSlide(_hcIndex + dir); }
+function carouselGoTo(i, reset = false) { renderCarouselSlide(i); if (reset) resetCarouselTimer(); }
 
 
 // ── Modal + Slider ────────────────────────────────────────────────────────────

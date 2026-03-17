@@ -9,22 +9,25 @@
    - 4.1 [Tabelle: games](#41-tabelle-games)
    - 4.2 [Tabelle: genres](#42-tabelle-genres)
    - 4.3 [Tabelle: game_genres (m:n)](#43-tabelle-game_genres-mn-beziehung)
-   - 4.4 [View: games_with_genres](#44-view-games_with_genres)
-   - 4.5 [Datenbankdiagramm (ER)](#45-datenbankdiagramm-er)
+   - 4.4 [Tabelle: roles / users](#44-tabelle-roles--users)
+   - 4.5 [View: games_with_genres](#45-view-games_with_genres)
+   - 4.6 [Datenbankdiagramm (ER)](#46-datenbankdiagramm-er)
 5. [Import-Skripte](#5-import-skripte)
-   - 5.1 [import.js](#51-importjs)
-   - 5.2 [expand-import.js](#52-expand-importjs)
+   - 5.1 [expand-import.js](#51-expand-importjs)
 6. [Backend (PHP-API)](#6-backend-php-api)
    - 6.1 [db.php](#61-dbphp)
    - 6.2 [get_games.php](#62-get_gamesphp)
    - 6.3 [get_genres.php](#63-get_genresphp)
+   - 6.4 [get_game_details.php](#64-get_game_detailsphp)
+   - 6.5 [auth.php](#65-authphp)
+   - 6.6 [admin_games.php](#66-admin_gamesphp)
 7. [Frontend](#7-frontend)
    - 7.1 [index.html](#71-indexhtml)
    - 7.2 [style.css](#72-stylecss)
    - 7.3 [app.js](#73-appjs)
 8. [Datenfluss](#8-datenfluss)
 9. [Externe APIs](#9-externe-apis)
-10. [Server-Setup (XAMPP)](#10-server-setup-xampp)
+10. [Server-Setup](#10-server-setup)
 11. [Wichtige Konfigurationswerte](#11-wichtige-konfigurationswerte)
 
 ---
@@ -35,9 +38,12 @@
 
 **Kernfunktionen:**
 - Alle Spiele in einem responsiven Grid mit Cover-Bildern anzeigen
-- Nach Genre filtern und nach Spielname suchen
+- Hero-Carousel mit aktuellen Angeboten (Sale-Spielen)
+- Nach Genre filtern, nach Sale filtern und nach Spielname suchen
 - Detailansicht (Modal) mit Screenshots, Beschreibung, Metadaten und Preis
 - Kachelgröße anpassbar (XS / S / M)
+- **Benutzerauthentifizierung:** Registrierung, Login, Logout mit Rollensystem
+- **Adminbereich:** Spiele ein-/ausblenden und löschen (nur für Admins sichtbar)
 - Design nach dem **Catppuccin Mocha**-Farbschema
 
 ---
@@ -46,13 +52,14 @@
 
 | Schicht | Technologie | Version / Details |
 |---|---|---|
-| Datenbank | MySQL (via XAMPP) | utf8mb4, InnoDB |
-| Backend | PHP | Eingebauter Dev-Server (`php -S`) |
+| Datenbank | MySQL / MariaDB | utf8mb4, InnoDB |
+| Backend | PHP 8.2 | Apache (Docker) oder PHP Built-in Dev-Server |
 | Datenbankabstraktion | PDO (PHP) | Singleton-Pattern |
 | Import-Skripte | Node.js | v24, `mysql2`, `node-fetch@2` |
 | Frontend | Vanilla HTML / CSS / JavaScript | Kein Framework |
 | Design-System | Catppuccin Mocha | Eigene Farbpalette |
 | Bild-CDN | Steam Community CDN | Externe URLs |
+| Deployment | Docker / docker-compose | Bevorzugter Start (ein Befehl) |
 
 ---
 
@@ -184,6 +191,12 @@ Speichert alle Spieledaten. Die Tabelle hat **32 Spalten**, gruppenweise erklär
 | `created_at` | TIMESTAMP | Zeitpunkt des Einfügens (automatisch) |
 | `updated_at` | TIMESTAMP | Zeitpunkt der letzten Änderung (automatisch) |
 
+#### Sichtbarkeit (Admin)
+
+| Spalte | Typ | Beschreibung |
+|---|---|---|
+| `is_visible` | TINYINT(1) | `1` = sichtbar (Standard), `0` = ausgeblendet. Nur Admins sehen ausgeblendete Spiele |
+
 **Indizes:** `idx_appid` (appid), `idx_name` (name) für schnelle Suche
 
 ---
@@ -224,7 +237,31 @@ Ein Spiel kann mehrere Genres haben (z.B. Counter-Strike: Action + Multiplayer),
 
 ---
 
-### 4.4 View: `games_with_genres`
+### 4.4 Tabelle: `roles` / `users`
+
+Diese Tabellen ermöglichen die **Benutzerauthentifizierung** mit Rollensystem.
+
+**`roles`** – Definiert verfügbare Benutzerrollen:
+
+| Spalte | Typ | Beschreibung |
+|---|---|---|
+| `id` | INT AUTO_INCREMENT | Primärschlüssel |
+| `name` | VARCHAR(50) UNIQUE | Rollenname: `user` oder `admin` |
+
+**`users`** – Speichert registrierte Benutzer:
+
+| Spalte | Typ | Beschreibung |
+|---|---|---|
+| `id` | INT AUTO_INCREMENT | Primärschlüssel |
+| `username` | VARCHAR(100) UNIQUE | Benutzername (eindeutig) |
+| `email` | VARCHAR(255) UNIQUE | E-Mail-Adresse (eindeutig) |
+| `password_hash` | VARCHAR(255) | Bcrypt-Hash des Passworts (`PASSWORD_DEFAULT`) |
+| `role_id` | INT | Fremdschlüssel → `roles.id` (Standard: 1 = user) |
+| `created_at` | TIMESTAMP | Registrierungszeitpunkt |
+
+---
+
+### 4.5 View: `games_with_genres`
 
 Ein **virtueller View**, der alle Spiele inklusive ihrer Genres als kommaseparierten String liefert. Nützlich für schnelle Abfragen ohne manuellen JOIN.
 
@@ -237,7 +274,7 @@ Die Genres werden via `GROUP_CONCAT(gen.name ORDER BY gen.name SEPARATOR ', ')` 
 
 ---
 
-### 4.5 Datenbankdiagramm (ER)
+### 4.6 Datenbankdiagramm (ER)
 
 ```
 ┌─────────────────────────────────────────┐
@@ -394,6 +431,10 @@ define('DB_NAME', 'steam_games_db');
 |---|---|---|---|
 | `genre` | string | Filter nach Genre-Name | `?genre=Action` |
 | `search` | string | Suche im Spielnamen (LIKE) | `?search=Half-Life` |
+| `sale` | `1` | Nur Spiele mit Rabatt | `?sale=1` |
+| `limit` | int | Maximale Anzahl Ergebnisse | `?limit=10` |
+
+> **Sichtbarkeit:** Normale Nutzer sehen nur Spiele mit `is_visible = 1`. Admins sehen alle Spiele.
 
 **Antwort-Struktur:**
 ```json
@@ -409,6 +450,7 @@ define('DB_NAME', 'steam_games_db');
       "short_description": "...",
       "genres": ["Action", "Free To Play"],
       "categories": ["Single-player", "Multi-player", "Steam Achievements"],
+      "is_visible": 1,
       ...
     }
   ]
@@ -458,6 +500,86 @@ GROUP_CONCAT(gen.name ORDER BY gen.name SEPARATOR ',') AS genres
 Gibt nur Genres zurück, die mindestens einem Spiel zugeordnet sind (`HAVING game_count > 0`). Alphabetisch sortiert.
 
 ---
+
+### 6.4 `get_game_details.php`
+
+**URL:** `http://localhost:8080/api/get_game_details.php?appid={appid}`
+
+**Parameter (per GET):**
+
+| Parameter | Typ | Beschreibung | Beispiel |
+|---|---|---|---|
+| `appid` | int (erforderlich) | Steam App-ID des Spiels | `?appid=730` |
+
+> **Sichtbarkeit:** Normale Nutzer erhalten 404, falls das Spiel `is_visible = 0` hat.
+
+**Antwort-Struktur:**
+```json
+{
+  "success": true,
+  "game": {
+    "id": 1,
+    "appid": 730,
+    "name": "Counter-Strike 2",
+    "genres": ["Action", "Free To Play"],
+    "categories": ["Multi-player", "Steam Achievements"],
+    "screenshots": ["https://...jpg", "https://...jpg"],
+    "short_description": "...",
+    ...
+  }
+}
+```
+
+**Fehlerfälle:** `400 Bad Request` (kein appid), `404 Not Found` (Spiel nicht gefunden / nicht sichtbar)
+
+---
+
+### 6.5 `auth.php`
+
+**URL:** `http://localhost:8080/api/auth.php`
+
+**Methode:** POST (für login/register/logout), GET (für me)
+
+**Aktionen:**
+
+| `action` | Methode | Parameter | Beschreibung |
+|---|---|---|---|
+| `register` | POST | `username`, `email`, `password` | Neuen Benutzer anlegen (Rolle: user) |
+| `login` | POST | `username`, `password` | Einloggen, Session starten |
+| `logout` | POST | – | Session beenden |
+| `me` | GET | – | Aktuellen Benutzer zurückgeben |
+
+**Antwort (Erfolg):**
+```json
+{
+  "success": true,
+  "user": { "id": 1, "username": "alice", "role": "user" }
+}
+```
+
+**Sicherheit:** Passwörter werden mit `password_hash()` (bcrypt) gespeichert. Bei Login/Register wird `session_regenerate_id(true)` aufgerufen.
+
+---
+
+### 6.6 `admin_games.php`
+
+**URL:** `http://localhost:8080/api/admin_games.php`
+
+**Methode:** POST
+
+**Zugriffsschutz:** Nur authentifizierte Admins (Session `role = admin`). Alle anderen erhalten `{"success": false, "error": "Kein Zugriff"}`.
+
+**Aktionen:**
+
+| `action` | Pflichtparameter | Beschreibung |
+|---|---|---|
+| `toggle_visible` | `game_id` | Sichtbarkeit umschalten (`is_visible = NOT is_visible`) |
+| `delete` | `game_id` | Spiel löschen (inkl. m:n `game_genres`-Einträge) |
+
+**Antwort `toggle_visible`:**
+```json
+{ "success": true, "is_visible": 0 }
+```
 
 ## 7. Frontend
 
@@ -548,27 +670,31 @@ Die einzige HTML-Datei. Enthält die komplette Seitenstruktur:
 **Einstiegspunkt:** `DOMContentLoaded` Event
 
 ```javascript
-document.addEventListener('DOMContentLoaded', () => {
-    initHeaderScroll();  // Header-Effekt beim Scrollen
-    initModal();         // Modal-Events registrieren
-    initSizePicker();    // Größen-Buttons aktivieren
-    initSearch();        // Suche initialisieren
-    loadGenres();        // Genres von API laden & Buttons rendern
-    loadGames();         // Alle Spiele laden & Grid rendern
+document.addEventListener('DOMContentLoaded', async () => {
+    initHeaderScroll();   // Header-Effekt beim Scrollen
+    initModal();          // Modal-Events registrieren
+    initSizePicker();     // Größen-Buttons aktivieren
+    initSearch();         // Suche initialisieren
+    initHeroCarousel();   // Carousel Event-Listener einmalig binden
+    await initAuth();     // Auth-Zustand laden, bevor Spiele gerendert werden
+    loadHeroSales();      // Sale-Spiele für Hero-Carousel laden
+    loadGenres();         // Genres von API laden & Buttons rendern
+    loadGames();          // Alle Spiele laden & Grid rendern
 });
 ```
 
 **Alle Funktionen im Überblick:**
 
-#### Hilfsfunktionen (Single Source of Truth)
+#### Hilfsfunktionen
 
 | Funktion | Beschreibung |
 |---|---|
 | `el(id)` | Shortcut für `document.getElementById(id)` |
 | `setText(id, val)` | Setzt Textinhalt, zeigt `'—'` bei fehlendem Wert |
-| `escapeHtml(str)` | Escaped HTML-Sonderzeichen (`&`, `<`, `>`, `"`) für sichere Ausgabe |
+| `isAdmin()` | Gibt `true` zurück wenn der eingeloggte Nutzer Admin ist |
 | `buildLogoUrl(appid, hash)` | Baut vollständige Steam-CDN-URL aus AppID und Hash |
-| `renderTags(container, items, className)` | Rendert eine Liste von Tags in einen Container (genutzt für Genre- UND Kategorie-Tags) |
+| `getGameBg(game)` | Gibt das beste verfügbare Hintergrundbild zurück (Screenshot → header\_image → logo) |
+| `renderTags(container, items, className)` | Rendert Tags-Liste in Container (für Genre- UND Kategorie-Tags) |
 | `formatPlatforms(game)` | Gibt `"Windows · Mac"` etc. zurück |
 | `formatController(val)` | `"full"` → `"Vollständig"`, `"partial"` → `"Teilweise"` |
 | `formatPrice(game)` | Formatiert Preis inkl. Rabatt oder `"Kostenlos"` |
@@ -580,31 +706,71 @@ document.addEventListener('DOMContentLoaded', () => {
 | `initHeaderScroll()` | Fügt `.scrolled`-Klasse am Header hinzu, wenn Seite gescrollt wird |
 | `initSizePicker()` | Bindet Click-Events an die Kachelgrößen-Buttons, schaltet CSS-Klassen |
 | `initSearch()` | Debounced Input-Handler (400ms), startet `loadGames()` nach Eingabe |
-| `initModal()` | Registriert alle Modal-Events (Close-Button, Backdrop-Click, Tastatur-Shortcuts, Slider-Buttons) |
+| `initModal()` | Registriert alle Modal-Events (Close-Button, Backdrop-Click, ESC, Pfeiltasten, Slider-Buttons) |
+| `initHeroCarousel()` | Bindet prev/next/cta/section-Click-Events des Carousels (einmalig) |
+| `initAuth()` | Lädt Session-Status (`auth.php?action=me`), rendert Auth-Button, initialisiert Auth-Modal |
+| `initAuthModal()` | Registriert Login-/Register-Formular-Events, Tab-Umschaltung |
 
 #### Datenladen
 
 | Funktion | Parameter | Beschreibung |
 |---|---|---|
-| `loadGenres()` | – | `GET /api/get_genres.php` → rendert Genre-Buttons |
-| `loadGames(genre, search)` | optional | `GET /api/get_games.php` → zeigt Loading, ruft `renderGames()` |
+| `loadGenres()` | – | `GET /api/get_genres.php` → rendert Genre-Buttons (Cache: wird nur einmalig geladen) |
+| `loadGames({ genre, search, sale })` | optional | `GET /api/get_games.php` → zeigt Loading, ruft `renderGames()` |
+| `loadHeroSales()` | – | `GET /api/get_games.php?sale=1` → befüllt Hero-Carousel |
+
+#### Rendering
+
+| Funktion | Parameter | Beschreibung |
+|---|---|---|
 | `renderGames(games)` | Array | Leert Grid, erstellt für jedes Spiel eine Karte |
-| `createGameCard(game)` | game-Objekt | Erstellt `.game-card` div mit Bild + Hover-Overlay |
+| `createGameCard(game)` | game-Objekt | Erstellt `.game-card` mit Bild + Admin-Controls (falls Admin) |
+| `createAdminControls(game, card)` | game, card | Erzeugt Auge- und Löschen-Buttons für Admin-Overlay |
+| `updateEyeBtn(btn, visible)` | btn, 0/1 | Aktualisiert Icon und Titel des Sichtbarkeits-Buttons |
+| `renderAuthBtn()` | – | Aktualisiert den Auth-Button (Anfangsbuchstabe / 👤-Icon) |
 
 #### Filter & Suche
 
 | Funktion | Beschreibung |
 |---|---|
-| `filterByGenre(genre, btn)` | Entfernt alle aktiven Genre-Buttons, setzt neuen aktiv, ruft `loadGames(genre)` |
-| `initSearch()` | Debounce 400ms, resettet Genre-Filter auf "Alle", ruft `loadGames('', suchbegriff)` |
+| `applyFilter({ genre?, sale? }, btn)` | Setzt aktiven Genre-Button, löscht Suche, ruft `loadGames()` |
 
-#### Modal
+#### Auth
 
 | Funktion | Beschreibung |
 |---|---|
-| `openModal(game)` | Befüllt alle Felder des Modals + Slider, zeigt Modal |
+| `submitAuth(action, fields, errorId)` | Sendet Login oder Register per POST an `auth.php`, aktualisiert UI |
+| `switchAuthTab(tab)` | Wechselt zwischen Login/Register-Tab im Auth-Modal |
+| `openAuthModal(tab)` | Öffnet Auth-Modal auf dem gewählten Tab |
+| `closeAuthModal()` | Schließt Auth-Modal |
+| `authLogout()` | Sendet Logout an `auth.php`, resettet Auth-Zustand, lädt Spiele neu |
+
+#### Admin-Aktionen
+
+| Funktion | Beschreibung |
+|---|---|
+| `adminToggleVisible(game, card, eyeBtn)` | POST `toggle_visible` → aktualisiert Card-Klasse und Eye-Button |
+| `adminDeleteGame(game, card)` | POST `delete` → entfernt Card aus DOM nach Bestätigung |
+
+#### Hero Carousel
+
+| Funktion | Beschreibung |
+|---|---|
+| `renderCarouselSlide(index)` | Setzt Hintergrundbild und Titel für den aktuellen Slide |
+| `renderCarouselBadges(game)` | Rendert Rabatt- und Preis-Badges im Carousel |
+| `preloadNextSlide()` | Lädt das Bild des nächsten Slides im Hintergrund vor |
+| `restartProgressBar()` | Startet die Fortschrittsbalken-Animation neu |
+| `buildCarouselDots()` | Erstellt Dot-Navigation für alle Carousel-Slides |
+| `resetCarouselTimer()` | Startet den Auto-Advance-Timer (5 s) neu |
+| `carouselStep(dir)` | Navigiert um ±1 (wrapping) |
+| `carouselGoTo(i, reset)` | Springt zu Index i; reset=true startet auch den Timer neu |
+
+#### Modal & Slider
+
+| Funktion | Beschreibung |
+|---|---|
+| `openModal(game)` | Befüllt alle Felder des Modals (Slider, Titel, Tags, Info-Grid, Sprachen, Link) + zeigt Modal |
 | `closeModal()` | Versteckt Modal, stellt `overflow` am Body wieder her |
-| `initModal()` | Event-Listener: Close-Button, Backdrop-Click, ESC-Taste, Pfeiltasten |
 | `changeSlide(dir)` | Wechselt Screenshot um ±1 |
 | `updateSlider()` | Aktualisiert Bild + Dots + Sichtbarkeit der Slider-Buttons |
 
@@ -623,27 +789,41 @@ document.addEventListener('DOMContentLoaded', () => {
 ### Beim Seitenaufruf
 
 ```
-Browser öffnet localhost:8888
+Browser öffnet localhost:8080
         ↓
 PHP-Server liefert index.html + style.css + app.js
         ↓
 app.js: DOMContentLoaded
-  ├── loadGenres() → GET /api/get_genres.php
-  │     └── PHP → MySQL: SELECT genres + COUNT
-  │           → JSON an Browser → Genre-Buttons rendern
+  ├── initHeroCarousel()         – Event-Listener binden (kein API-Call)
   │
-  └── loadGames() → GET /api/get_games.php
-        └── PHP → MySQL: SELECT games + GROUP_CONCAT(genres)
-              → JSON an Browser → createGameCard() für jedes Spiel
+  ├── initAuth()
+  │     └── GET /api/auth.php?action=me
+  │           → Session prüfen → _auth setzen → Auth-Button rendern
+  │
+  ├── loadHeroSales()
+  │     └── GET /api/get_games.php?sale=1
+  │           → PHP → MySQL: WHERE price_discount > 0
+  │                 → JSON → renderCarouselSlide(0) + buildCarouselDots()
+  │
+  ├── loadGenres()
+  │     └── GET /api/get_genres.php
+  │           → PHP → MySQL: SELECT genres + COUNT (m:n JOIN)
+  │                 → JSON → Genre-Buttons rendern (Cache: _genres)
+  │
+  └── loadGames()
+        └── GET /api/get_games.php
+              → PHP → MySQL: SELECT games + GROUP_CONCAT(genres)
+                    → JSON → createGameCard() für jedes Spiel
 ```
 
 ### Bei Klick auf Genre-Button
 
 ```
-filterByGenre("Action", button)
+applyFilter({ genre: "Action" }, button)
   ├── Alle .genre-btn → remove 'active'
   ├── Geklickter Button → add 'active'
-  └── loadGames("Action")
+  ├── Suchfeld leeren
+  └── loadGames({ genre: "Action" })
         → GET /api/get_games.php?genre=Action
               PHP → MySQL: WHERE g.id IN (subquery für Genre)
                     → Gefilterte Spiele → Grid neu rendern
@@ -730,47 +910,41 @@ Liefert populäre AppID-Listen. Benötigt kein API-Key. Rate Limit: `STEAMSPY_DE
 
 ---
 
-## 10. Server-Setup (XAMPP)
+## 10. Server-Setup
 
-### Voraussetzungen
+### Option A: Docker (empfohlen – ein Befehl)
 
-- XAMPP installiert unter `C:\xampp\`
-- Node.js installiert
-- NPM-Pakete installiert: `npm install` im Projektverzeichnis
-
-### Dienste starten
-
-#### MySQL starten
-Im XAMPP Control Panel auf **MySQL → Start** klicken.  
-Oder per PowerShell:
-```powershell
-Start-Process "C:\xampp\mysql\bin\mysqld.exe" -ArgumentList "--defaults-file=C:\xampp\mysql\bin\my.ini" -WindowStyle Hidden
+```bash
+docker-compose up -d
 ```
 
-#### PHP-Entwicklungsserver starten (Port 8888)
+Dann im Browser: **http://localhost:8080**  
+MySQL, PHP und Apache werden automatisch gestartet. Beim ersten Start wird das Schema automatisch eingespielt.
+
+### Option B: XAMPP (manuell)
+
+**Voraussetzungen:** XAMPP unter `C:\xampp\`, Node.js, `npm install` im Projektverzeichnis
+
+#### Dienste starten
+
+1. XAMPP Control Panel: **MySQL → Start** + **Apache → Start**
+2. PHP-Server starten (Port 8080):
+
 ```powershell
-Start-Process "C:\xampp\php\php.exe" -ArgumentList "-S","localhost:8888","-t","C:\Users\yigithan.zeybel\Aeup-Projekt\public" -WindowStyle Hidden
+Start-Process "C:\xampp\php\php.exe" -ArgumentList "-S","localhost:8080","-t",".\public" -WindowStyle Hidden
 ```
 
-#### phpMyAdmin öffnen
-Dafür muss zusätzlich **Apache** im XAMPP Control Panel gestartet werden. Dann: [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
-
-### Datenbank einmalig einrichten
+#### Datenbank einmalig einrichten
 
 ```powershell
 # Schema erstellen
 C:\xampp\mysql\bin\mysql.exe -u root < database/schema.sql
 
-# Spiele importieren (dauert ~2-3 Minuten)
-node database/import.js
-
-# Optional: auf 500 Spiele erweitern (~5-10 Minuten)
+# Spiele importieren + auf 500 erweitern (~5-10 Minuten)
 node database/expand-import.js
 ```
 
-### Webanwendung aufrufen
-
-`http://localhost:8888`
+Dann im Browser: **http://localhost:8080**
 
 ---
 
@@ -778,13 +952,12 @@ node database/expand-import.js
 
 | Datei | Konstante / Variable | Wert | Beschreibung |
 |---|---|---|---|
-| `import.js` | `API_DELAY` | `400` ms | Pause zwischen Steam-API Anfragen |
 | `expand-import.js` | `TARGET` | `500` | Ziel-Spielanzahl |
 | `expand-import.js` | `API_DELAY` | `400` ms | Pause zwischen Steam-API Anfragen |
 | `expand-import.js` | `STEAMSPY_DELAY` | `1500` ms | Pause zwischen SteamSpy-Anfragen |
 | `db.php` | `DB_HOST` | `localhost` | MySQL-Hostadresse |
 | `db.php` | `DB_USER` | `root` | MySQL-Benutzername |
-| `db.php` | `DB_PASS` | `""` | MySQL-Passwort (leer = XAMPP-Standard) |
+| `db.php` | `DB_PASS` | `""` | MySQL-Passwort (leer = XAMPP-Standard / Docker) |
 | `db.php` | `DB_NAME` | `steam_games_db` | Datenbankname |
 | `app.js` | `API_BASE` | `'api/'` | Basis-Pfad für alle API-Anfragen |
 | `app.js` | `SIZES` | `['xs','s','m']` | Verfügbare Kachelgrößen |

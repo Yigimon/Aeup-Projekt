@@ -8,9 +8,12 @@ Technologie-Stack: **PHP · MySQL · Vanilla JS · HTML · CSS**
 ## Funktionen
 
 - Alle Spiele in einem responsiven Grid mit Cover-Bildern
-- Genre-Filter und Spielname-Suche
-- Detailansicht (Modal) mit Screenshots, Beschreibung, Metadaten und Preis
+- **Hero-Carousel** mit aktuellen Sale-Angeboten (Auto-Advance + Dots-Navigation)
+- Genre-Filter, Sale-Filter und Spielname-Suche
+- Detailansicht (Modal) mit Screenshot-Slider, Beschreibung, Metadaten und Preis
 - Kachelgröße anpassbar (XS / S / M)
+- **Benutzerauthentifizierung:** Registrierung, Login, Logout
+- **Adminbereich:** Spiele ein-/ausblenden und löschen
 - Design nach dem **Catppuccin Mocha**-Farbschema
 
 ---
@@ -30,18 +33,18 @@ Aeup-Projekt/
 │   └── README.md               ← Datenbank-Dokumentation
 │
 ├── public/                     ← PHP-Server Root (localhost:8080)
-│   ├── index.html              ← Single Page Application
-│   ├── css/
-│   │   └── style.css           ← Gesamtes Styling (Catppuccin Mocha)
-│   ├── js/
-│   │   └── app.js              ← Gesamte Frontend-Logik
-│   └── api/
-│       ├── db.php              ← PDO-Datenbankverbindung (Singleton)
-│       ├── get_games.php       ← Spiele-Endpunkt (GET, Filter + Suche)
-│       ├── get_genres.php      ← Genres-Endpunkt (GET)
-│       ├── get_game_details.php← Einzelspiel-Endpunkt (GET)
-│       ├── admin_games.php     ← Admin-Endpunkt (CRUD)
-│       └── auth.php            ← Authentifizierung
+    ├── index.html              ← Single Page Application
+    ├── css/
+    │   └── style.css           ← Gesamtes Styling (Catppuccin Mocha)
+    ├── js/
+    │   └── app.js              ← Gesamte Frontend-Logik
+    └── api/
+        ├── db.php              ← PDO-Datenbankverbindung (Singleton)
+        ├── get_games.php       ← Spiele-Endpunkt (GET, Filter + Suche)
+        ├── get_genres.php      ← Genres-Endpunkt (GET)
+        ├── get_game_details.php← Einzelspiel-Endpunkt (GET)
+        ├── auth.php            ← Authentifizierung (Login/Register/Logout)
+        └── admin_games.php     ← Admin-Endpunkt (toggle_visible, delete)
 │
 ├── Dockerfile                  ← PHP 8.2 Apache Container
 ├── docker-compose.yml          ← MySQL + PHP Container-Setup
@@ -83,14 +86,15 @@ Dann im Browser: **http://localhost:8080**
 
 ## Datenbankschema
 
-Das Schema implementiert eine **m:n-Beziehung** zwischen Spielen und Genres:
+Das Schema implementiert eine **m:n-Beziehung** zwischen Spielen und Genres sowie ein **Rollensystem** für die Authentifizierung:
 
 ```
 games ──< game_genres >── genres
+users ──> roles
 ```
 
 - Ein Spiel kann mehrere Genres haben (z.B. Counter-Strike: Action + Multiplayer)
-- Ein Genre gehört zu vielen Spielen
+- Benutzer haben eine Rolle: `user` (Standard) oder `admin`
 
 Vollständige Schema-Dokumentation: [`database/schema.sql`](database/schema.sql)
 
