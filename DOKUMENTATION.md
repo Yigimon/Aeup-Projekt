@@ -936,18 +936,6 @@ docker-compose up -d
 Dann im Browser: **http://localhost:8080**  
 MySQL, PHP und Apache werden automatisch gestartet. Beim ersten Start wird das Schema automatisch eingespielt.
 
-### Option B: XAMPP (manuell)
-
-**Voraussetzungen:** XAMPP unter `C:\xampp\`, Node.js, `npm install` im Projektverzeichnis
-
-#### Dienste starten
-
-1. XAMPP Control Panel: **MySQL → Start** + **Apache → Start**
-2. PHP-Server starten (Port 8080):
-
-```powershell
-Start-Process "C:\xampp\php\php.exe" -ArgumentList "-S","localhost:8080","-t",".\public" -WindowStyle Hidden
-```
 
 #### Datenbank einmalig einrichten
 
